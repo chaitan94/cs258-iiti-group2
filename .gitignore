@@ -1,0 +1,4 @@
+*.db
+*.sql
+pub/pma
+pub/pma/*
