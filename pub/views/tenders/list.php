@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>E Procurement</title>
+	<title>Tender List</title>
 	<link rel="stylesheet" type="text/css" href="/css/pure.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/base.css">
 </head>
@@ -15,7 +15,7 @@ echo '<table cellpadding="15">';
 foreach ($r as $key => $value) {
 	echo '<tr><td>';
 	echo $value['name'];
-	echo '</td><td><input type="button" value="Details" onclick="window.open(\'/tender/'.$value['id'].'\',\'_blank\');"></td></tr>';
+	echo '</td><td><a href="/tenders/'.$value['id'].'"><input class="pure-button" type="button" value="Details"></a></td></tr>';
 }
 echo '</table>';
 ?>

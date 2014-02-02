@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>E Procurement</title>
-	<link rel="stylesheet" type="text/css" href="css/pure.min.css">
-	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/pure.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
 </head>
 <body>
 <?php include 'nav.php'; ?>
@@ -19,7 +19,7 @@ Register<br>
 <script type="text/javascript">
 $("#reg").submit(function(e){
 	$.ajax({
-		url:'/register/new',
+		url:'/users',
 		type:'POST',
 		data:$(this).serializeArray(),
 		success:function(d){if(d)alert(d);}

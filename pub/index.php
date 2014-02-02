@@ -8,44 +8,27 @@ case '':
 case '/':
 	include('views/home.php');
 	break;
-case 'login':
-case 'register':
-	include('controllers/'.$urlpar[0].'.php');
-	break;
 case 'logout':
 	session_start();
-	if(isset($_SESSION['user'])) unset($_SESSION['user']);
+	if(isset($_SESSION['id'])) unset($_SESSION['id']);
 	header('Location: /');
 	break;
+case 'login':
+	include('controllers/login.php');
+	break;
+case 'register':
+	include('views/register.php');
+	break;
 case 'tender':
+case 'tenders':
 	include('controllers/tender.php');
 	break;
-case 'tenders':
-	include('views/tenders/list.php');
+case 'user':
+case 'users':
+	include('controllers/user.php');
 	break;
 case 'src':
-	include('models/users.php');
-	$db = new User();
-	// $st=$db->query("CREATE TABLE tenders(id INT NOT NULL,name TEXT);");
-	// $st->execute();
-	// $st=$db->prepare("INSERT INTO tenders(name) VALUES('Tender no 5');");
-	// $st->execute();
-	// $st=$db->prepare("INSERT INTO tenders(name) VALUES('Tender no 6');");
-	// $st->execute();
-	// $st=$db->prepare("INSERT INTO tenders(name) VALUES('Tender numbah 7');");
-	// $st->execute();
-	// $st=$db->prepare("INSERT INTO tenders(name) VALUES('Another tender (8)');");
-	// $st->execute();
-	$st=$db->prepare("SELECT * FROM users;");
-	$st->execute();
-	$res=$st->fetchAll(PDO::FETCH_ASSOC);
-	// var_dump($res);
-	foreach ($res as $key => $value) {
-		foreach ($value as $key => $va) {
-			echo $va.' ';
-		}
-		echo '<br>';
-	}
+	echo file_get_contents("http://127.0.0.6");
 	break;
 default:
 	header('Location: /');

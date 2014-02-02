@@ -1,5 +1,5 @@
 <?php
-include('models/database.php');
+include_once('models/database.php');
 class Tender extends DB{
 	public $id;
 	public $name;

@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>E Procurement</title>
-	<link rel="stylesheet" type="text/css" href="css/pure.min.css">
-	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/pure.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
 </head>
 <body>
 <?php include 'nav.php'; ?>
@@ -20,7 +20,13 @@ $("#login").submit(function(e){
 		url:'/login/verify',
 		type:'POST',
 		data:$(this).serializeArray(),
-		success:function(d){if(d)alert(d);}
+		success:function(d){
+			if(d){
+				if(d=='1') window.open('/','_self');
+				else if(d=='0') alert('Username/Password wrong');
+				else if(d=='-1') alert('User not registered');
+			}
+		}
 	});
 	return false;
 });
