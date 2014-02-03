@@ -1,6 +1,9 @@
 <?php
 if(isset($urlpar[1])){
-
+	if(is_numeric($urlpar[1])){
+		$dno = $urlpar[1];
+		include_once('views/users/details.php');
+	}
 }else{
 	switch ($_SERVER['REQUEST_METHOD']) {
 		case 'POST':

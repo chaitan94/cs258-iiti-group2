@@ -8,7 +8,7 @@
 			$user = new User($_SESSION['id']);
 		?>
 		<a href="/logout"><li style="float:right;">Logout</li></a>
-		<a href="/profile"><li style="float:right;"><?=$user->name?></li></a>
+		<a href="/user/<?=$_SESSION['id']?>"><li style="float:right;"><?=$user->name?></li></a>
 		<?php }else{ ?>
 		<a href="/login"><li style="float:right;">Login</li></a>
 		<a href="/register"><li style="float:right;">Register</li></a>

@@ -20,6 +20,11 @@ class User extends DB{
 		$st->bindParam(2,$pass);
 		$st->execute();
 	}
+	function getTenders(){
+		$r = $this->prepare("SELECT tenders.name, tu.tenderid FROM tender_user as tu INNER JOIN tenders WHERE tu.userid=? AND tu.tenderid=tenders.id;");
+		$r->execute(array($this->id));
+		return $r->fetchAll(PDO::FETCH_ASSOC);
+	}
 	function verify($user,$pass){
 		$st=$this->prepare("SELECT * FROM users WHERE name=?;");
 		$st->execute(array($user));

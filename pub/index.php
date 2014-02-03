@@ -2,7 +2,9 @@
 if(substr($_SERVER['REQUEST_URI'],-1)=='/'){
 	header('Location: '.substr($_SERVER['REQUEST_URI'],0,-1));
 }
-$urlpar = explode('/',substr($_SERVER['REQUEST_URI'],1));
+$urlpar = $_SERVER['REQUEST_URI'];
+if($acurl = stripos($urlpar,'?'))$urlpar = substr($urlpar,0,$acurl);
+$urlpar = explode('/',substr($urlpar,1));
 switch ($urlpar[0]) {
 case '':
 case '/':
@@ -28,10 +30,13 @@ case 'users':
 	include('controllers/user.php');
 	break;
 case 'src':
-	echo file_get_contents("http://127.0.0.6");
+	echo file_get_contents("http://google.com");
+	break;
+case '404':
+	echo "404";
 	break;
 default:
-	header('Location: /');
+	header('Location: /404');
 	break;
 }
 ?>

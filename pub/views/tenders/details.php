@@ -2,8 +2,8 @@
 <html>
 <head>
 <?php
-include 'views/nav.php';
-include 'models/tenders.php';
+include_once('views/nav.php');
+include_once('models/tenders.php');
 $ten = new Tender($dno);
 ?>
 	<title>Details | Tender #<?=$dno?></title>
@@ -12,7 +12,27 @@ $ten = new Tender($dno);
 </head>
 <body>
 <h3>Details for <?=$ten->name?></h3>
+<?php
+	if(isset($_SESSION['id'])){
+		if($ten->isAppliedBy($_SESSION['id'])){
+?>
+<input class="pure-button" type="submit" value="Remove Application"><!--Doesn't work yet-->
+<?php 	}else{ ?>
 <a href="/tenders/<?=$dno?>/apply">
 <input class="pure-button" type="button" value="Apply"></a>
+<?php 	} ?>
+<?php
+	}else{
+?><input class="pure-button" type="button" value="Login to Apply" disabled>
+<?php
+	}
+?>
+<h3>Applicants:</h3>
+<?php
+// var_dump($ten->getApplicants())
+foreach($ten->getApplicants() as $v){
+	echo '<a href="/users/'.$v['userid'].'">'.$v['name'].'</a><br>';
+};
+?>
 </body>
 </html>
