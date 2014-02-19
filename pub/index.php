@@ -5,13 +5,14 @@ if(substr($_SERVER['REQUEST_URI'],-1)=='/'){
 $urlpar = $_SERVER['REQUEST_URI'];
 if($acurl = stripos($urlpar,'?'))$urlpar = substr($urlpar,0,$acurl);
 $urlpar = explode('/',substr($urlpar,1));
+set_include_path(get_include_path() . PATH_SEPARATOR .realpath('./'));
+session_start();
 switch ($urlpar[0]) {
 case '':
 case '/':
 	include('views/home.php');
 	break;
 case 'logout':
-	session_start();
 	if(isset($_SESSION['id'])) unset($_SESSION['id']);
 	header('Location: /');
 	break;

@@ -1,11 +1,25 @@
 html,body{
 	background: #EEE;
 }
+.clearfix{clear: both;}
+@font-face{
+	font-family: Quicksand;
+	src: url(../fonts/Quicksand-Regular.otf);
+}
+*{font-family: Quicksand;}
+.left{float: left;}
+.right{float: right;}
+nav{
+	width: 100%;
+	position: fixed;
+	background: #333;
+	box-shadow: rgba(0,0,0,0.4) 0 0 15px 0;
+}
+nav>div{margin: 0 50px;}
 nav ul{
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
-	background: #333;
 }
 nav ul li{
 	color:#DDD;
@@ -16,4 +30,39 @@ nav ul li:hover{
 	background: #555;
 	color: #EEE;
 	cursor: pointer;
+}
+.banner{
+	background: url(../img/headerbg.png) center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	color: #FFF;
+	text-shadow: #889 2px 2px;
+	text-align: center;
+}
+.banner h1{
+	padding: 250px 0 20px 0;
+	margin: 0;
+}
+.not-nav{padding-top: 33px;}
+main{
+	width: 80%;
+	margin: 30px auto;
+	min-height: 400px;
+}
+.subtitle{
+	background: rgba(0,0,0,0.05);
+	padding: 4px 0;
+	border: solid rgba(0,0,0,0.2) 1px;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 10%;
+	text-align: center;
+}
+footer{
+	padding: 100px 0 350px 0;
+	text-align: center;
+	color: rgba(22,20,45,0.8);
+	background: rgba(42,40,95,0.2);
 }

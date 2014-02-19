@@ -14,7 +14,6 @@ if(isset($urlpar[1])){
 			switch ($_SERVER['REQUEST_METHOD']) {
 				case 'POST':
 					if(isset($_POST['name'])){
-						session_start();
 						if(isset($_SESSION['id'])){
 							include_once('models/tender_user.php');
 							$tu = new TenderUser();
@@ -32,7 +31,7 @@ if(isset($urlpar[1])){
 	}else{
 		switch($urlpar[1]){
 			default:
-			include_once('views/tenders/list.php');
+			header('Location: /404');
 		}
 	}
 }else{

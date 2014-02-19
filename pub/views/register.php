@@ -7,6 +7,7 @@
 </head>
 <body>
 <?php include 'nav.php'; ?>
+<div class="not-nav">
 Register<br>
 <form id="reg">
 	<input name="user" type="text"><br>
@@ -15,6 +16,7 @@ Register<br>
 	<input name="pass" type="password"><br>
 	<input type="submit">
 </form>
+</div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
 $("#reg").submit(function(e){

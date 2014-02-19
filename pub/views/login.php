@@ -7,12 +7,14 @@
 </head>
 <body>
 <?php include 'nav.php'; ?>
+<div class="not-nav">
 Login<br>
 <form id="login">
 	<input name="user" type="text"><br>
 	<input name="pass" type="password"><br>
 	<input type="submit">
 </form>
+</div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
 $("#login").submit(function(e){

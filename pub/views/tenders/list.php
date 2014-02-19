@@ -7,17 +7,21 @@
 </head>
 <body>
 <?php
-include 'views/nav.php';
-include 'models/tenders.php';
-$ten = new Tender();
-$r = $ten->getAll();
-echo '<table cellpadding="15">';
-foreach ($r as $key => $value) {
-	echo '<tr><td>';
-	echo $value['name'];
-	echo '</td><td><a href="/tenders/'.$value['id'].'"><input class="pure-button" type="button" value="Details"></a></td></tr>';
-}
-echo '</table>';
+	include 'views/nav.php';
+	include 'models/tenders.php';
+	$ten = new Tender();
+	$r = $ten->getAll();
 ?>
+<div class="not-nav">
+<main>
+	<table cellpadding="15">
+	<?php
+	foreach ($r as $key => $value) {
+		echo '<tr><td>'.$value['name'].'</td><td><a href="/tenders/'.$value['id'].'"><input class="pure-button" type="button" value="Details"></a></td></tr>';
+	}
+	?>
+	</table>
+</main>
+</div>
 </body>
 </html>
