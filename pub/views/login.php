@@ -8,12 +8,14 @@
 <body>
 <?php include 'nav.php'; ?>
 <div class="not-nav">
-Login<br>
-<form id="login">
-	<input name="user" type="text"><br>
-	<input name="pass" type="password"><br>
-	<input type="submit">
-</form>
+<main>
+	<form id="login" class="pure-form">
+		<legend>Login</legend><br>
+		<input name="user" type="text"><br><br>
+		<input name="pass" type="password"><br><br>
+		<input class="pure-button pure-button-primary" type="submit">
+	</form>
+</main>
 </div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">

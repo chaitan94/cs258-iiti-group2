@@ -8,14 +8,21 @@
 <body>
 <?php include 'nav.php'; ?>
 <div class="not-nav">
-Register<br>
-<form id="reg">
-	<input name="user" type="text"><br>
-	<!-- <input name="email" type="text"><br>
-	<input name="gender" type="text"><br> -->
-	<input name="pass" type="password"><br>
-	<input type="submit">
-</form>
+<main>
+	<form id="reg" class="pure-form">
+		<legend>Register</legend><br>
+		<label class="pure-radio">
+			<input type="radio" name="category" value="contractor" checked>Contractor</input>
+			<input type="radio" name="category" value="admin">Admin</input>
+		</label>
+		<br>
+		<!-- <input name="email" type="text"><br>
+		<input name="gender" type="text"><br> -->
+		<input name="user" type="text"><br><br>
+		<input name="pass" type="password"><br><br>
+		<input class="pure-button pure-button-primary" type="submit">
+	</form>
+</main>
 </div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
