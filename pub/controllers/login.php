@@ -2,10 +2,10 @@
 if(isset($urlpar[1])){
 	switch($urlpar[1]){
 	case 'verify':
-		if(isset($_POST['user'])&&isset($_POST['pass'])){
+		if(isset($_POST['email'])&&isset($_POST['pass'])){
 			include('models/users.php');
 			$db = new User();
-			echo $db->verify($_POST['user'],$_POST['pass']);
+			echo $db->verify($_POST['email'],$_POST['pass']);
 		}else header('Location: /login');
 		break;
 	default: header('Location: /login');

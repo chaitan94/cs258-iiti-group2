@@ -9,11 +9,13 @@
 <?php include 'nav.php'; ?>
 <div class="not-nav">
 <main>
-	<form id="login" class="pure-form">
-		<legend>Login</legend><br>
-		<input name="user" type="text"><br><br>
-		<input name="pass" type="password"><br><br>
-		<input class="pure-button pure-button-primary" type="submit">
+	<form id="login" class="pure-form pure-form-aligned">
+		<legend>Login</legend>
+		<fieldset>
+			<div class="pure-control-group"><label>E-mail</label><input name="email" placeholder="E-mail" type="text"></div>
+			<div class="pure-control-group"><label>Password</label><input name="pass" placeholder="Password" type="password"></div>
+			<div class="pure-controls"><input class="pure-button pure-button-primary" type="submit"></div>
+		</fieldset>
 	</form>
 </main>
 </div>
@@ -28,7 +30,7 @@ $("#login").submit(function(e){
 			if(d){
 				if(d=='1') window.open('/','_self');
 				else if(d=='0') alert('Username/Password wrong');
-				else if(d=='-1') alert('User not registered');
+				else if(d=='-1') alert('E-mail not registered');
 			}
 		}
 	});

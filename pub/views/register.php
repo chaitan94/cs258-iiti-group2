@@ -9,18 +9,23 @@
 <?php include 'nav.php'; ?>
 <div class="not-nav">
 <main>
-	<form id="reg" class="pure-form">
+	<form id="reg" class="pure-form pure-form-aligned">
 		<legend>Register</legend><br>
-		<label class="pure-radio">
-			<input type="radio" name="category" value="contractor" checked>Contractor</input>
-			<input type="radio" name="category" value="admin">Admin</input>
-		</label>
-		<br>
-		<!-- <input name="email" type="text"><br>
-		<input name="gender" type="text"><br> -->
-		<input name="user" type="text"><br><br>
-		<input name="pass" type="password"><br><br>
-		<input class="pure-button pure-button-primary" type="submit">
+		<fieldset>
+			<div class="pure-control-group"><label>Username</label><input name="name" type="text" required></div>
+			<div class="pure-control-group"><label>E-mail</label><input name="email" type="email" required></div>
+			<div class="pure-control-group"><label>Password</label><input name="pass" type="password" required></div>
+			<div class="pure-control-group"><label>Confirm Password</label><input name="confirmpass" type="password" required></div>
+			<div class="pure-control-group"><label>Phone number</label><input name="phone" type="text" required></div>
+			<div class="pure-control-group">
+				<label></label>
+				<select name="type" class="pure-input">
+					<option value="contractor">Contractor</option>
+					<option value="admin">Admin</option>
+				</select>
+			</div>
+			<div class="pure-controls"><input class="pure-button pure-button-primary" type="submit"></div>
+		</fieldset>
 	</form>
 </main>
 </div>

@@ -7,23 +7,20 @@ if(isset($urlpar[1])){
 }else{
 	switch ($_SERVER['REQUEST_METHOD']) {
 		case 'POST':
-			if(isset($_POST['user'])&&isset($_POST['pass'])){
+			if(isset($_POST['name'])&&isset($_POST['confirmpass'])&&isset($_POST['pass'])&&isset($_POST['email'])&&isset($_POST['type'])&&isset($_POST['phone'])){
 				include('models/users.php');
-				$db = new User();
-				$db->insert($_POST['user'],$_POST['pass']);
-				echo $_POST['user']." registered.";
-			}else header('Location: /register');
-			break;
-		case 'PUT':
-			break;
-		case 'DELETE':
+				if($_POST['pass']==$_POST['confirmpass']){
+					$db = new User();
+					$db->insert($_POST);
+					echo $_POST['email']." registered.";
+				}else
+					echo 'Passwords do not match!';
+			}else echo 'All details necessary';
 			break;
 		case 'GET':
 		default:
 			include('models/users.php');
 			$db = new User();
-			// $st=$db->query("CREATE TABLE tenders(id INT NOT NULL,name TEXT);");
-			// $st->execute();
 			$st=$db->prepare("SELECT * FROM users;");
 			$st->execute();
 			$res=$st->fetchAll(PDO::FETCH_ASSOC);
