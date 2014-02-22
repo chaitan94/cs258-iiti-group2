@@ -20,7 +20,8 @@ case 'login':
 	include_once('controllers/login.php');
 	break;
 case 'register':
-	include_once('views/register.php');
+	if(isset($_SESSION['id'])) header('Location: /');
+	else include_once('views/register.php');
 	break;
 case 'tender':
 case 'tenders':
@@ -34,16 +35,27 @@ case 'admin':
 	include_once('controllers/admin.php');
 	break;
 case 'debug':
+// phpinfo();
 	$bkc = 'bkc';
 	echo md5($bkc).'<br>';
 	echo md5(md5($bkc)).'<br>';
+	include_once('vendor/ircmaxell/password-compat/lib/password.php');
+	echo password_hash($bkc,PASSWORD_BCRYPT).'<br>';
+	echo password_hash(password_hash($bkc,PASSWORD_BCRYPT),PASSWORD_BCRYPT).'<br>';
+	// if(password_verify('bkc','$2y$10$.kWwyBroGkIMRhZOvS8Zp.HgjJixOBcy0b2qdH4R3UW0mzWT5Refm')){
+	if(password_verify('bkc','$2y$10$5rohTvJbi/SQJjwrwPA2g.2JmHWzXLxbjrXX.1lntTRe4j2XvUAwm')){
+		echo ':D';
+	}else{
+		echo ':(';
+	}
 	// include_once('models/database.php');
 	// $db = new DB();
-	// $st = $db->prepare("SELECT id,pass FROM users;");
+	// $st = $db->prepare("SELECT id,pass,name FROM users;");
 	// $st->execute();
 	// while($row=$st->fetch(PDO::FETCH_ASSOC)){
 	// 	echo $row['id'].'<br>';
-	// 	$st2 = $db->prepare("UPDATE users SET pass='".md5($row['pass'])."' WHERE id='".$row['id']."';");
+	// 	// $st2 = $db->prepare("UPDATE users SET pass='".$row['name']."' WHERE id='".$row['id']."';");
+	// 	$st2 = $db->prepare("UPDATE users SET pass='".password_hash($row['pass'],PASSWORD_BCRYPT)."' WHERE id='".$row['id']."';");
 	// 	$st2->execute();
 	// }
 	// $r = mcrypt_generic(2, $bkc);

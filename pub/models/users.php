@@ -21,9 +21,10 @@ class User extends DB{
 		}
 	}
 	function insert($u){
+		include_once('vendor/ircmaxell/password-compat/lib/password.php');
 		$st=$this->prepare("INSERT INTO users(name,pass,email,phone,type) VALUES(?,?,?,?,?);");
 		$st->execute(array($u['name'],
-							md5($u['pass']),
+							password_hash($u['pass'],PASSWORD_BCRYPT),
 							$u['email'],
 							$u['phone'],
 							$u['type']));
@@ -34,10 +35,11 @@ class User extends DB{
 		return $r->fetchAll(PDO::FETCH_ASSOC);
 	}
 	function verify($email,$pass){
-		$st=$this->prepare("SELECT * FROM users WHERE email=?;");
+		include_once('vendor/ircmaxell/password-compat/lib/password.php');
+		$st=$this->prepare("SELECT id,pass FROM users WHERE email=?;");
 		$st->execute(array($email));
 		if($r = $st->fetch(PDO::FETCH_ASSOC)){
-			if($r['pass']==md5($pass)){
+			if(password_verify($pass,$r['pass'])){
 				$_SESSION['id']=$r['id'];
 				return 1;
 			}else return 0;

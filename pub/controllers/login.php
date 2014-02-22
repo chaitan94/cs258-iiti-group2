@@ -11,6 +11,7 @@ if(isset($urlpar[1])){
 	default: header('Location: /login');
 	}
 }else{
+	unset($_SESSION['id']);
 	include('views/login.php');
 }
 ?>

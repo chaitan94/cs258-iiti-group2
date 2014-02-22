@@ -1,5 +1,6 @@
 <?php
 class DB extends PDO{
+	private static $current;
 	function __construct(){
 		// new PDO(dsn, username, passwd, options)
 		// parent::__construct("sqlite:data/data.db");
