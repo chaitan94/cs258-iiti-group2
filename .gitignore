@@ -2,3 +2,4 @@
 *.sql
 pub/pma
 pub/pma/*
+pub/db.conf

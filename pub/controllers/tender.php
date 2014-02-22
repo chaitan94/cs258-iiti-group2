@@ -31,7 +31,12 @@ if(isset($urlpar[1])){
 	}else{
 		switch($urlpar[1]){
 			case 'new':
-				include_once('views/tenders/new.php');
+				include_once('models/users.php');
+				$user = new User($_SESSION['id']);
+				if($user->type=='admin'){
+					include 'models/tenders.php';
+					include_once('views/tenders/new.php');
+				}else header('Location: /');
 				break;
 			default:
 				header('Location: /404');

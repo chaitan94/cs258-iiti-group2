@@ -3,7 +3,6 @@
 <head>
 <?php
 include 'views/nav.php';
-include 'models/tenders.php';
 ?>
 	<title>New | Tender</title>
 	<link rel="stylesheet" type="text/css" href="/css/pure.min.css">

@@ -1,8 +1,3 @@
-<?php
-include_once('models/users.php');
-$user = new User($_SESSION['id']);
-if($user->type=='admin'){
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +9,13 @@ if($user->type=='admin'){
 <?php include_once('views/nav.php'); ?>
 <div class="not-nav">
 <main>
-	<h3>Admin Panel</h3>
+	<h3><?=$user->name?></h3>
+	<h4>Admin Panel</h4>
 	<hr/>
-	<a href="/tender/new" class="pure-button">Upload new tender</a>
+	<br>
+	<a href="/tender/new" class="pure-button pure-button-primary">Upload new tender</a><br><br>
+	<a href="/tender/new" class="pure-button pure-button-primary">View and approve new tender applications</a><br>
 </main>
 </div>
 </body>
 </html>
-<?php } ?>
