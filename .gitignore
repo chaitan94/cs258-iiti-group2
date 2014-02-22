@@ -3,3 +3,4 @@
 pub/pma
 pub/pma/*
 pub/db.conf
+pub/vendor/*
