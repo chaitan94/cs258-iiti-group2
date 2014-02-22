@@ -24,14 +24,14 @@
 	<div style="padding: 15px;">
 		<div class="subtitle">News</div>
 		<a href="/callfortenders">callfortenders</a><br>
-		<a href="/src">src</a>
+		<a href="/debug">debug</a>
 	</div>
 </div>
 <div class="pure-u-1-2 right">
 	<div style="padding: 15px;">
 		<div class="subtitle">Quick Links</div>
 		<a href="/callfortenders">callfortenders</a><br>
-		<a href="/src">src</a>
+		<a href="/debug">debug</a>
 	</div>
 </div>
 <div class="clearfix"></div>

@@ -23,7 +23,7 @@ class User extends DB{
 	function insert($u){
 		$st=$this->prepare("INSERT INTO users(name,pass,email,phone,type) VALUES(?,?,?,?,?);");
 		$st->execute(array($u['name'],
-							$u['pass'],
+							md5($u['pass']),
 							$u['email'],
 							$u['phone'],
 							$u['type']));
@@ -37,8 +37,7 @@ class User extends DB{
 		$st=$this->prepare("SELECT * FROM users WHERE email=?;");
 		$st->execute(array($email));
 		if($r = $st->fetch(PDO::FETCH_ASSOC)){
-			if($r['pass']==$pass){
-				session_start();
+			if($r['pass']==md5($pass)){
 				$_SESSION['id']=$r['id'];
 				return 1;
 			}else return 0;

@@ -30,8 +30,11 @@ if(isset($urlpar[1])){
 		}
 	}else{
 		switch($urlpar[1]){
+			case 'new':
+				include_once('views/tenders/new.php');
+				break;
 			default:
-			header('Location: /404');
+				header('Location: /404');
 		}
 	}
 }else{
