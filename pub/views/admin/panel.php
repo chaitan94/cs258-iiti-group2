@@ -13,8 +13,11 @@
 	<h4>Admin Panel</h4>
 	<hr/>
 	<br>
-	<a href="/tender/new" class="pure-button pure-button-primary">Upload new tender</a><br><br>
-	<a href="/tender/new" class="pure-button pure-button-primary">View and approve new tender applications</a><br>
+	<a href="/tenders/new" class="pure-button pure-button-primary">Upload new tender</a><br><br>
+	<a href="/tenders/new" class="pure-button pure-button-primary">View and approve new tender applications</a><br>
+	<h4>Tenders by you</h4>
+	<hr/>
+	<br>
 </main>
 </div>
 </body>

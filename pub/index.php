@@ -13,7 +13,7 @@ case '/':
 	include_once('views/home.php');
 	break;
 case 'logout':
-	if(isset($_SESSION['id'])) unset($_SESSION['id']);
+	session_destroy();
 	header('Location: /');
 	break;
 case 'login':
