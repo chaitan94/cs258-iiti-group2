@@ -24,6 +24,8 @@ if(isset($urlpar[1])){
 					break;
 				case 'GET':
 				default:
+					include_once('models/tenders.php');
+					$ten = new Tender($dno);
 					include_once('views/tenders/details.php');
 					break;
 			}
@@ -34,8 +36,20 @@ if(isset($urlpar[1])){
 				include_once('models/users.php');
 				$user = new User($_SESSION['id']);
 				if($user->type=='admin'){
-					include 'models/tenders.php';
-					include_once('views/tenders/new.php');
+					switch($_SERVER['REQUEST_METHOD']){
+						case 'POST':
+							include 'models/tenders.php';
+							if((new Tender)->insert($_POST))
+								echo "Tender uploaded successfully";
+							else
+								echo "Error: Tender could not be uploaded.";
+							break;
+						case 'GET':
+						default:
+							include 'models/tenders.php';
+							include_once('views/tenders/new.php');
+							break;
+					}
 				}else header('Location: /');
 				break;
 			default:
@@ -43,6 +57,9 @@ if(isset($urlpar[1])){
 		}
 	}
 }else{
+	include 'models/tenders.php';
+	$ten = new Tender();
+	$r = $ten->getAll();
 	include_once('views/tenders/list.php');
 }
 ?>

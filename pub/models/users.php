@@ -7,36 +7,47 @@ class User extends DB{
 	public $email;
 	public $phone;
 	public $type;
-	function __construct($id=0){
+	public function __construct($id=0){
 		parent::__construct();
 		if($id){
 			$this->id = $id;
-			$st = $this->prepare("SELECT * FROM users WHERE id=?;");
-			$st->execute(array($id));
-			$r = $st->fetch(PDO::FETCH_ASSOC);
-			$this->name = $r['name'];
-			$this->email = $r['email'];
-			$this->phone = $r['phone'];
-			$this->type = $r['type'];
+			$r = $this->getOne($id);
+			$this->name = $r->name;
+			$this->email = $r->email;
+			$this->phone = $r->phone;
+			$this->type = $r->type;
 		}
 	}
-	function insert($u){
-		include_once('vendor/ircmaxell/password-compat/lib/password.php');
-		$st=$this->prepare("INSERT INTO users(name,pass,email,phone,type) VALUES(?,?,?,?,?);");
-		$st->execute(array($u['name'],
-							password_hash($u['pass'],PASSWORD_BCRYPT),
-							$u['email'],
-							$u['phone'],
-							$u['type']));
+	public function getOne($id){
+		$st = $this->executeQuery("SELECT * FROM users WHERE id=?;",array($id));
+        return($st->fetchObject());
 	}
-	function getTenders(){
-		$r = $this->prepare("SELECT tenders.name, tu.tenderid FROM tender_user as tu INNER JOIN tenders WHERE tu.userid=? AND tu.tenderid=tenders.id;");
+	public function getAll($id){
+		$st = $this->executeQuery("SELECT * FROM users;",array($id));
+        return($st->fetch(PDO::FETCH_OBJ));
+	}
+	public function insert($u){
+		$st = $this->db->prepare("SELECT id FROM users WHERE email=?;");
+		$st->execute(array($u['email']));
+		if(!$st->rowCount()){
+			include_once('vendor/ircmaxell/password-compat/lib/password.php');
+			$st=$this->db->prepare("INSERT INTO users(name,pass,email,phone,type) VALUES(?,?,?,?,?);");
+			$st->execute(array($u['name'],
+								password_hash($u['pass'],PASSWORD_BCRYPT),
+								$u['email'],
+								$u['phone'],
+								$u['type']));
+			return $this->db->lastInsertId();
+		} else return -1;
+	}
+	public function getTenders(){
+		$r = $this->db->prepare("SELECT tenders.title, tu.tenderid FROM tender_user as tu INNER JOIN tenders WHERE tu.userid=? AND tu.tenderid=tenders.id;");
 		$r->execute(array($this->id));
-		return $r->fetchAll(PDO::FETCH_ASSOC);
+		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
-	function verify($email,$pass){
+	public function verify($email,$pass){
 		include_once('vendor/ircmaxell/password-compat/lib/password.php');
-		$st=$this->prepare("SELECT id,pass FROM users WHERE email=?;");
+		$st=$this->db->prepare("SELECT id,pass FROM users WHERE email=?;");
 		$st->execute(array($email));
 		if($r = $st->fetch(PDO::FETCH_ASSOC)){
 			if(password_verify($pass,$r['pass'])){

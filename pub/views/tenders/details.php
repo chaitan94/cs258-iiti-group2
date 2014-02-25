@@ -3,8 +3,6 @@
 <head>
 <?php
 include_once('views/nav.php');
-include_once('models/tenders.php');
-$ten = new Tender($dno);
 ?>
 	<title>Details | Tender #<?=$dno?></title>
 	<link rel="stylesheet" type="text/css" href="/css/pure.min.css">
@@ -13,7 +11,7 @@ $ten = new Tender($dno);
 <body>
 <div class="not-nav">
 <main>
-	<h3>Details for <?=$ten->name?></h3>
+	<h3>Details for <?=$ten->title?></h3>
 	<?php
 		if(isset($_SESSION['id'])){
 			if($ten->isAppliedBy($_SESSION['id'])){
@@ -33,7 +31,7 @@ $ten = new Tender($dno);
 	<?php
 	// var_dump($ten->getApplicants())
 	foreach($ten->getApplicants() as $v){
-		echo '<a href="/users/'.$v['userid'].'">'.$v['name'].'</a><br>';
+		echo '<a href="/users/'.$v->userid.'">'.$v->name.'</a><br>';
 	};
 	?>
 </main>
