@@ -2,34 +2,50 @@
 include_once('models/database.php');
 class Tender extends DB{
 	public $id;
-	public $name;
-	function __construct($id=0){
+	public $title;
+	public $brief;
+	public $category;
+	public $closedate;
+	public $closetime;
+	public $startdate;
+	public $starttime;
+	public function __construct($id=0){
 		parent::__construct();
 		if($id){
 			$this->id = $id;
-			$st = $this->prepare("SELECT * FROM tenders WHERE id=?;");
-			$st->execute(array($id));
-			$r = $st->fetch(PDO::FETCH_ASSOC);
-			$this->name = $r['name'];
+			$r = $this->getOne($id);
+			$this->title = $r->title;
+			$this->brief = $r->brief;
+			$this->category = $r->category;
+			$this->closedate = $r->closedate;
+			$this->closetime = $r->closetime;
+			$this->startdate = $r->startdate;
+			$this->starttime = $r->starttime;
 		}
 	}
-	function insert($a,$b){
-		$st = $this->prepare("INSERT INTO tenders VALUES(?,?);");
-		$st->execute();
+	public function getOne($id){
+		$st = $this->executeQuery("SELECT * FROM tenders WHERE id=?;",array($id));
+        return($st->fetchObject());
 	}
-	function isAppliedBy($uid){
-		$r = $this->prepare("SELECT * FROM tender_user WHERE tenderid=? AND userid=?;");
+	public function getAll(){
+		$r = $this->db->query("SELECT * FROM tenders");
+		return $r->fetchAll(PDO::FETCH_OBJ);
+	}
+	public function insert($t){
+		$st = $this->db->prepare("INSERT INTO tenders(title,brief,category,closedate,closetime,startdate,starttime) VALUES(?,?,?,?,?,?,?);");
+		$st->execute(array($t['title'],$t['brief'],$t['category'],$t['closedate'],$t['closetime'],$t['startdate'],$t['starttime']));
+		var_dump($t);
+		return 1;
+	}
+	public function isAppliedBy($uid){
+		$r = $this->db->prepare("SELECT * FROM tender_user WHERE tenderid=? AND userid=?;");
 		$r->execute(array($this->id,$uid));
 		return $r->rowCount();
 	}
-	function getApplicants(){
-		$r = $this->prepare("SELECT users.name, tu.userid FROM tender_user as tu INNER JOIN users WHERE tu.tenderid=? AND tu.userid=users.id;");
+	public function getApplicants(){
+		$r = $this->db->prepare("SELECT users.name, tu.userid FROM tender_user as tu INNER JOIN users WHERE tu.tenderid=? AND tu.userid=users.id;");
 		$r->execute(array($this->id));
-		return $r->fetchAll(PDO::FETCH_ASSOC);
-	}
-	function getAll(){
-		$r = $this->query("SELECT * FROM tenders");
-		return $r->fetchAll(PDO::FETCH_ASSOC);
+		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
 }
 ?>

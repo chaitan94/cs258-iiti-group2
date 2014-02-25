@@ -50,6 +50,7 @@ main{
 	background: rgba(240,240,240,0.9);
 	padding: 50px 10%;
 	min-height: 550px;
+	margin-bottom: 10px;
 }
 .subtitle{
 	background: rgba(0,0,0,0.05);

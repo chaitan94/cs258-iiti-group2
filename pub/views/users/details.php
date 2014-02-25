@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php
-include_once('models/users.php');
-$user = new User($dno);
-?>
 	<title>Details | User #<?=$dno?></title>
 	<link rel="stylesheet" type="text/css" href="/css/pure.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/base.css">
@@ -19,7 +15,7 @@ $user = new User($dno);
 	<h3>Applied for:</h3>
 	<?php
 	foreach($user->getTenders() as $v){
-		echo '<a href="/tenders/'.$v['tenderid'].'">'.$v['name'].'</a><br>';
+		echo '<a href="/tenders/'.$v->tenderid.'">'.$v->title.'</a><br>';
 	};
 	?>
 </main>
