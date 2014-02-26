@@ -21,6 +21,8 @@
 			<fieldset>
 				<div class="pure-control-group"><label>Title</label><input name="title" type="text" required></div>
 				<div class="pure-control-group"><label>Brief</label><input name="brief" type="text" required></div>
+				<div class="pure-control-group"><label>Category</label><input name="category" type="text" required></div>
+				<div class="pure-control-group"><label>EMD</label><input name="emd" type="text" required></div>
 			</fieldset>
 			<fieldset>
 				<div class="pure-control-group"><label>Start date</label><input name="startdate" type="date" required></div>
@@ -31,7 +33,6 @@
 				<div class="pure-control-group"><label>Closing time</label><input name="closetime" type="time" value="00:00" required></div>
 			</fieldset>
 			<fieldset>
-				<div class="pure-control-group"><label>Category</label><input name="category" type="text" required></div>
 				<div class="pure-control-group"><label>NIT</label><input name="NIT" type="file" required></div>
 				<div class="pure-control-group"><label>Tender Document</label><input name="tenderdoc" type="file" required></div>
 				<div class="pure-controls"><input class="pure-button pure-button-primary" type="button" value="Continue" onclick="openstep(2);"></div>

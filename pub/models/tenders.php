@@ -4,6 +4,7 @@ class Tender extends DB{
 	public $id;
 	public $title;
 	public $brief;
+	public $emd;
 	public $category;
 	public $closedate;
 	public $closetime;
@@ -16,6 +17,7 @@ class Tender extends DB{
 			$r = $this->getOne($id);
 			$this->title = $r->title;
 			$this->brief = $r->brief;
+			$this->emd = $r->emd;
 			$this->category = $r->category;
 			$this->closedate = $r->closedate;
 			$this->closetime = $r->closetime;
@@ -32,8 +34,8 @@ class Tender extends DB{
 		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
 	public function insert($t){
-		$st = $this->db->prepare("INSERT INTO tenders(title,brief,category,closedate,closetime,startdate,starttime) VALUES(?,?,?,?,?,?,?);");
-		$st->execute(array($t['title'],$t['brief'],$t['category'],$t['closedate'],$t['closetime'],$t['startdate'],$t['starttime']));
+		$st = $this->db->prepare("INSERT INTO tenders(title,brief,emd,category,closedate,closetime,startdate,starttime) VALUES(?,?,?,?,?,?,?,?);");
+		$st->execute(array($t['title'],$t['brief'],$t['emd'],$t['category'],$t['closedate'],$t['closetime'],$t['startdate'],$t['starttime']));
 		var_dump($t);
 		return 1;
 	}

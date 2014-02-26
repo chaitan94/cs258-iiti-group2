@@ -19,7 +19,7 @@
 	<tbody>
 	<?php
 	foreach ($r as $key => $value) {
-		echo '<tr><td>'.$value->title.'</td><td>'.$value->title.'</td><td><a href="/tenders/'.$value->id.'"><input class="pure-button" type="button" value="Details"></a></td></tr>';
+		echo '<tr><td>'.$value->title.'</td><td>'.$value->emd.'</td><td><a href="/tenders/'.$value->id.'"><input class="pure-button" type="button" value="Details"></a></td></tr>';
 	}
 	?>
 	</tbody>
