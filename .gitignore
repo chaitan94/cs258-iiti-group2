@@ -5,3 +5,4 @@ pub/pma/*
 pub/db.conf
 pub/vendor/*
 pub/dbg/*
+pub/data/*
