@@ -1,0 +1,51 @@
+.steps{
+overflow: hidden;
+font-weight: bold;
+}
+.steps>li{
+color: #777;
+padding: 15px 0 0 65px;
+background: #f1f1f1;
+position: relative;
+display: block;
+float: left;
+height: 50px;
+width: 230px;
+cursor: pointer;
+}
+.steps>li:before{
+content: " ";
+display: block;
+width: 0;
+height: 0;
+border-top: 50px solid transparent;
+border-bottom: 50px solid transparent;
+border-left: 40px solid #44aacc;
+position: absolute;
+top: 50%;
+margin-top: -50px;
+margin-left: 3px;
+left: 100%;
+z-index: 1;
+}
+.steps>li:after{
+content: " ";
+display: block;
+width: 0;
+height: 0;
+border-top: 50px solid transparent;
+border-bottom: 50px solid transparent;
+border-left: 40px solid #f1f1f1;
+position: absolute;
+top: 50%;
+margin-top: -50px;
+left: 100%;
+z-index: 2;
+}
+.steps>li.selected{
+background: #44aacc !important;
+color: white !important;
+}
+.steps>li.selected:after{
+border-left-color: #44aacc !important;
+}

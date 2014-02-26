@@ -39,10 +39,8 @@ if(isset($urlpar[1])){
 					switch($_SERVER['REQUEST_METHOD']){
 						case 'POST':
 							include 'models/tenders.php';
-							if((new Tender)->insert($_POST))
-								echo "Tender uploaded successfully";
-							else
-								echo "Error: Tender could not be uploaded.";
+							if((new Tender)->insert($_POST)) echo 1;
+							else echo 0;
 							break;
 						case 'GET':
 						default:

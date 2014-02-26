@@ -10,6 +10,26 @@ html,body{
 @font-face{
 	font-family: Quicksand;
 	src: url(../fonts/Quicksand-Regular.otf);
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face{
+	font-family: Quicksand;
+	src: url(../fonts/Quicksand-Bold.otf);
+	font-style: normal;
+	font-weight: bold;
+}
+@font-face{
+	font-family: Quicksand;
+	src: url(../fonts/Quicksand-Italic.otf);
+	font-style: italic;
+	font-weight: bold;
+}
+@font-face{
+	font-family: Quicksand;
+	src: url(../fonts/Quicksand-BoldItalic.otf);
+	font-style: italic;
+	font-weight: normal;
 }
 *{font-family: Quicksand;}
 .left{float: left;}
@@ -19,6 +39,7 @@ nav{
 	position: fixed;
 	background: #333;
 	box-shadow: rgba(0,0,0,0.4) 0 0 15px 0;
+	z-index: 999;
 }
 nav>div{margin: 0 50px;}
 nav ul{
