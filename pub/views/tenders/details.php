@@ -7,11 +7,26 @@ include_once('views/nav.php');
 	<title>Details | Tender #<?=$dno?></title>
 	<link rel="stylesheet" type="text/css" href="/css/pure.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/tender.css">
 </head>
 <body>
 <div class="not-nav">
 <main>
 	<h3>Details for <?=$ten->title?></h3>
+	Brief: <?=$ten->brief?><br/>
+	Start: <?=$ten->starttime?>, <?=$ten->startdate?><br/>
+	Close: <?=$ten->closetime?>, <?=$ten->closedate?><br/>
+	<div class="tenderdoc">
+		<table class="pure-table">
+			<thead>
+				<tr><th colspan="2">Tender Documents</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>NIT</td><td><input type="button" class="pure-button" value="Download"></td></tr>
+				<tr><td>Tender Document</td><td><input type="button" class="pure-button" value="Download"></td></tr>
+			</tbody>
+		</table>
+	</div>
 	<?php
 		if(isset($_SESSION['id'])){
 			if($ten->isAppliedBy($_SESSION['id'])){
@@ -29,7 +44,6 @@ include_once('views/nav.php');
 	?>
 	<h3>Applicants:</h3>
 	<?php
-	// var_dump($ten->getApplicants())
 	foreach($ten->getApplicants() as $v){
 		echo '<a href="/users/'.$v->userid.'">'.$v->name.'</a><br>';
 	};
