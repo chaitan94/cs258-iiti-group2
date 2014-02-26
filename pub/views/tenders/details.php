@@ -14,6 +14,7 @@ include_once('views/nav.php');
 <main>
 	<h3>Details for <?=$ten->title?></h3>
 	Brief: <?=$ten->brief?><br/>
+	EMD: <?=$ten->emd?><br/>
 	Start: <?=$ten->starttime?>, <?=$ten->startdate?><br/>
 	Close: <?=$ten->closetime?>, <?=$ten->closedate?><br/>
 	<div class="tenderdoc">
