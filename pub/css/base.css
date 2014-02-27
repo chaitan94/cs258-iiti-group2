@@ -31,10 +31,10 @@ html,body{
 	font-style: italic;
 	font-weight: normal;
 }
-*{font-family: Quicksand;}
+*{}
 .left{float: left;}
 .right{float: right;}
-nav{
+nav{font-family: Quicksand;
 	width: 100%;
 	position: fixed;
 	background: #333;
@@ -48,21 +48,27 @@ nav ul{
 	list-style-type: none;
 }
 nav ul li{
-	color:#DDD;
+	color:#AAA;
 	display: inline;
 	padding: 7px 15px;
+  -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
 }
 nav ul li:hover{
-	background: #555;
-	color: #EEE;
+	background: #444;
+	color: #DDD;
 	cursor: pointer;
 }
 .banner{
+	background: rgba(40,40,60,0.6);
 	color: #FFF;
-	text-shadow: #889 2px 2px;
+	text-shadow: rgba(100,100,100,0.5) 1px 1px;
 	text-align: center;
 }
 .banner h1{
+	font-weight: normal;
 	padding: 350px 0 20px 0;
 	margin: 0;
 }
@@ -83,8 +89,16 @@ main{
 	text-align: center;
 }
 footer{
-	padding: 100px 0 350px 0;
+	height: 670px;
 	text-align: center;
-	color: rgba(22,20,45,0.8);
-	background: rgba(42,40,95,0.2);
+	color: rgba(180,180,180,0.8);
+	background: rgba(42,40,40,0.66);
+}
+footer>div{
+	padding: 100px 0 0 0;
+}
+footer img{
+	opacity: 0.2;
+	height: 250px;
+	margin: 50px;
 }

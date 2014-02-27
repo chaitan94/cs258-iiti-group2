@@ -38,7 +38,14 @@
 </div>
 </main>
 <footer>
-	Built for IIT Indore | 2014
+<div>
+	<div>
+		<img src="img/iiti_logo_grey.png" alt="IIT Indore">
+	</div>
+	<div>
+		Built for IIT Indore | 2014
+	</div>
+</div>
 </footer>
 </div>
 </body>
