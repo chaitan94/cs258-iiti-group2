@@ -13,7 +13,7 @@ $ten = new Tender($dno);
 <body>
 <div class="not-nav">
 <main>
-	<h3>Application for <?=$ten->name?></h3>
+	<h3>Application for Tender #<?=$ten->id?>: <?=$ten->title?></h3>
 	<a href="/tenders/<?=$dno?>">
 		<input class="pure-button" type="button" value="Back To Details">
 	</a>
