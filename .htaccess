@@ -1,3 +1,5 @@
+# Redirects every request to pub folder as-is.
+
 RewriteEngine on
 RewriteBase /
 RewriteRule ^(.*)$ pub/$1

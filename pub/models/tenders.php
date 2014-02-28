@@ -1,5 +1,8 @@
 <?php
 include_once('models/database.php');
+/**
+ * Handles database request related to a tender.
+ */
 class Tender extends DB{
 	public $id;
 	public $title;
