@@ -1,12 +1,21 @@
 <?php
+// Remove trailing slash from end of URL 
 if(substr($_SERVER['REQUEST_URI'],-1)=='/'){
 	header('Location: '.substr($_SERVER['REQUEST_URI'],0,-1));
 }
+
+// To store parameters from URL
 $urlpar = $_SERVER['REQUEST_URI'];
-if($acurl = stripos($urlpar,'?'))$urlpar = substr($urlpar,0,$acurl);
+
+// Strip the part of url after ?, if any
+if($acurl = stripos($urlpar,'?')) $urlpar = substr($urlpar,0,$acurl);
+
+// Split URL with slashes
 $urlpar = explode('/',substr($urlpar,1));
 set_include_path(get_include_path() . PATH_SEPARATOR .realpath('./'));
 session_start();
+
+// Switch according to first parameter in URL
 switch ($urlpar[0]) {
 case '':
 case '/':
@@ -34,6 +43,9 @@ case 'users':
 case 'admin':
 	include_once('controllers/admin.php');
 	break;
+// Use this for testing purposes
+// Put any of your test codes in dbg folder.
+// It wont be commited to github as the folder is in gitignore
 case 'debug':
 	include_once('dbg/index.php');
 	break;
