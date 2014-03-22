@@ -13,6 +13,7 @@ class Tender extends DB{
 	public $closetime;
 	public $startdate;
 	public $starttime;
+	public $ownerid;
 	public function __construct($id=0){
 		parent::__construct();
 		if($id){
@@ -26,6 +27,7 @@ class Tender extends DB{
 			$this->closetime = $r->closetime;
 			$this->startdate = $r->startdate;
 			$this->starttime = $r->starttime;
+			$this->ownerid = $r->ownerid;
 		}
 	}
 	public function getOne($id){
@@ -37,20 +39,20 @@ class Tender extends DB{
 		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
 	public function insert($t){
-		$st = $this->db->prepare("INSERT INTO tenders(title,brief,emd,category,closedate,closetime,startdate,starttime) VALUES(?,?,?,?,?,?,?,?);");
-		$st->execute(array($t['title'],$t['brief'],$t['emd'],$t['category'],$t['closedate'],$t['closetime'],$t['startdate'],$t['starttime']));
-		var_dump($t);
-		return 1;
+		$st = $this->executeQuery("INSERT INTO tenders(title,brief,emd,category,closedate,closetime,startdate,starttime,ownerid) 
+			VALUES(?,?,?,?,?,?,?,?,?);",
+			array($t['title'],$t['brief'],$t['emd'],$t['category'],$t['closedate'],$t['closetime'],$t['startdate'],$t['starttime'],$_SESSION['id']));
+		if($st) return true;
+		else return false;
 	}
 	public function isAppliedBy($uid){
-		$r = $this->db->prepare("SELECT * FROM tender_user WHERE tenderid=? AND userid=?;");
-		$r->execute(array($this->id,$uid));
+		$r = $this->executeQuery("SELECT * FROM tender_user WHERE tenderid=? AND userid=?;",array($this->id,$uid));
 		return $r->rowCount();
 	}
 	public function getApplicants(){
-		$r = $this->db->prepare("SELECT users.name, tu.userid FROM tender_user as tu INNER JOIN users WHERE tu.tenderid=? AND tu.userid=users.id;");
-		$r->execute(array($this->id));
-		return $r->fetchAll(PDO::FETCH_OBJ);
+		$r = $this->executeQuery("SELECT users.name, tu.userid FROM tender_user as tu INNER JOIN users WHERE tu.tenderid=? AND tu.userid=users.id;",array($this->id));
+		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
+		else return false;
 	}
 }
 ?>
