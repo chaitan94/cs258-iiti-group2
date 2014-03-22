@@ -48,6 +48,13 @@ if(isset($urlpar[1])){
 					}
 				}else header('Location: /');
 				break;
+			case 'approve':
+				include_once('models/users.php');
+				$user = new User($_SESSION['id']);
+				if($user->type=='admin'){
+					include_once('views/tenders/approve.php');
+				}else header('Location: /');
+				break;
 			default:
 				header('Location: /404');
 		}
