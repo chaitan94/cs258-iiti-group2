@@ -18,8 +18,9 @@ class DB{
 	}
     public function executeQuery($query,$data = null){
         $st = $this->db->prepare($query);
-        $st->execute($data);
-        return $st;
+        if($st->execute($data))
+	        return $st;
+	    else return false;
     }
 }
 ?>

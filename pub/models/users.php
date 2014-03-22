@@ -30,8 +30,7 @@ class User extends DB{
         return($st->fetch(PDO::FETCH_OBJ));
 	}
 	public function insert($u){
-		$st = $this->db->prepare("SELECT id FROM users WHERE email=?;");
-		$st->execute(array($u['email']));
+		$st = $this->executeQuery("SELECT id FROM users WHERE email=?;",array($u['email']));
 		if(!$st->rowCount()){
 			include_once('vendor/ircmaxell/password-compat/lib/password.php');
 			$st=$this->db->prepare("INSERT INTO users(name,pass,email,phone,type) VALUES(?,?,?,?,?);");
@@ -44,14 +43,18 @@ class User extends DB{
 		} else return -1;
 	}
 	public function getTenders(){
-		$r = $this->db->prepare("SELECT tenders.title, tu.tenderid FROM tender_user as tu INNER JOIN tenders WHERE tu.userid=? AND tu.tenderid=tenders.id;");
-		$r->execute(array($this->id));
-		return $r->fetchAll(PDO::FETCH_OBJ);
+		$r = $this->executeQuery("SELECT tenders.title, tu.tenderid FROM tender_user as tu INNER JOIN tenders WHERE tu.userid=? AND tu.tenderid=tenders.id;",array($this->id));
+		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
+		else return false;
+	}
+	public function getOwnedTenders(){
+		$r = $this->executeQuery("SELECT title, id FROM tenders WHERE ownerid=?;",array($this->id));
+		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
+		else return false;
 	}
 	public function verify($email,$pass){
 		include_once('vendor/ircmaxell/password-compat/lib/password.php');
-		$st=$this->db->prepare("SELECT id,pass FROM users WHERE email=?;");
-		$st->execute(array($email));
+		$st=$this->executeQuery("SELECT id,pass FROM users WHERE email=?;",array($email));
 		if($r = $st->fetch(PDO::FETCH_ASSOC)){
 			if(password_verify($pass,$r['pass'])){
 				$_SESSION['id']=$r['id'];

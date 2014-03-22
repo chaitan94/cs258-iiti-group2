@@ -17,6 +17,11 @@
 	<a href="/tenders/new" class="pure-button pure-button-primary">View and approve new tender applications</a><br>
 	<h4>Tenders by you</h4>
 	<hr/>
+	<?php
+	foreach($user->getOwnedTenders() as $v){
+		echo '<a href="/tenders/'.$v->id.'">'.$v->title.'</a><br>';
+	};
+	?>
 	<br>
 </main>
 </div>

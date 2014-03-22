@@ -18,10 +18,8 @@ if(isset($urlpar[1])){
 							include_once('models/tender_user.php');
 							$tu = new TenderUser();
 							$tu->insert($dno,$_SESSION['id']);
-							include_once('views/tenders/details.php');
 						}
 					}
-					break;
 				case 'GET':
 				default:
 					include_once('models/tenders.php');

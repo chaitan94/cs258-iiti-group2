@@ -77,6 +77,7 @@ $("#newtenform").submit(function(e){
 	for (var i = $("#newtenform *[required]").length - 1; i >= 0; i--) {
 		if(!$($("#newtenform *[required]")[i]).val()){
 			alert("invalid");
+			// return false;
 			break;
 		}
 	};
@@ -87,6 +88,7 @@ $("#newtenform").submit(function(e){
 	}).always(function(d) {
 		if(d=="1"){
 			openstep(4);
+			$(".steps li").unbind("click");
 		}else if(d=="0"){
 			openstep(5);
 		}
