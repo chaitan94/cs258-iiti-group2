@@ -10,7 +10,11 @@ class DB{
 	protected $dbuser='root';
 	protected $dbpass='';
 	public function __construct(){
-		$this->db = new PDO("mysql:dbname=".$this->dbname.";host=".$this->dbhost,$this->dbuser,$this->dbpass);
+		try{
+			$this->db = new PDO("mysql:dbname=".$this->dbname.";host=".$this->dbhost,$this->dbuser,$this->dbpass);
+		}catch(Exception $e){
+			die("Error connecting to database.<br>Are sure your database is initialized?<br>Try opening <a href='/install.php'>/install.php</a>");
+		}
 	}
     public function executeQuery($query,$data = null){
         $st = $this->db->prepare($query);
