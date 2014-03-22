@@ -28,6 +28,9 @@ case 'logout':
 case 'login':
 	include_once('controllers/login.php');
 	break;
+case 'contact':
+	include_once('controllers/contact.php');
+	break;
 case 'register':
 	if(isset($_SESSION['id'])) header('Location: /');
 	else include_once('views/register.php');
