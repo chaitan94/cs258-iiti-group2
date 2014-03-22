@@ -32,7 +32,7 @@ include_once('views/nav.php');
 		if(isset($_SESSION['id'])){
 			if($ten->isAppliedBy($_SESSION['id'])){
 	?>
-	<input class="pure-button" type="submit" value="Remove Application"><!--Doesn't work yet-->
+	<input class="pure-button" type="submit" value="Already applied" disabled><!--Doesn't work yet-->
 	<?php 	}else{ ?>
 	<a href="/tenders/<?=$dno?>/apply">
 	<input class="pure-button" type="button" value="Apply"></a>

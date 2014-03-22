@@ -3,6 +3,7 @@
 	<ul class="pure-u-1">
 		<a href="/"><li style="float:left;">E-Procurement</li></a>
 		<a href="/tenders"><li style="float:left;">Tender List</li></a>
+		<a href="/contact"><li style="float:left;">Contact</li></a>
 <?php
 if(isset($_SESSION['id'])){
 	include_once('models/users.php');
