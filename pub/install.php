@@ -77,6 +77,7 @@ CREATE DATABASE IF NOT EXISTS `$dbname`;";
   `closedate` text,
   `closetime` text,
   `ownerid` int(11) NOT NULL,
+  `open` BOOLEAN NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );";

@@ -14,6 +14,7 @@ class Tender extends DB{
 	public $startdate;
 	public $starttime;
 	public $ownerid;
+	public $open;
 	public function __construct($id=0){
 		parent::__construct();
 		if($id){
@@ -28,6 +29,7 @@ class Tender extends DB{
 			$this->startdate = $r->startdate;
 			$this->starttime = $r->starttime;
 			$this->ownerid = $r->ownerid;
+			$this->open = $r->open;
 		}
 	}
 	public function getOne($id){
