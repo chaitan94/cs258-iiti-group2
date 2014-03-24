@@ -2,8 +2,8 @@
 if(isset($urlpar[1])){
 	if(is_numeric($urlpar[1])){
 		include_once('models/users.php');
-		$user = new User($urlpar[1]);
-		if($user->id) include_once('views/users/details.php');
+		$u = new User($urlpar[1]);
+		if($u->id) include_once('views/users/details.php');
 		else header('Location: /');
 	}
 }else{
