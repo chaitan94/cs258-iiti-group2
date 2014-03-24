@@ -9,7 +9,8 @@
 <?php include 'nav.php'; ?>
 <div class="not-nav">
 <main>
-
+Phone number:
+E-mail Address:
 </main>
 </div>
 </body>
