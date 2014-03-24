@@ -47,7 +47,7 @@ class User extends DB{
 		} else return -1;
 	}
 	public function getTenders(){
-		$r = $this->executeQuery("SELECT tenders.title, tu.tenderid FROM tender_user as tu INNER JOIN tenders WHERE tu.userid=? AND tu.tenderid=tenders.id;",array($this->id));
+		$r = $this->executeQuery("SELECT tu.id, tenders.title, tu.tenderid FROM tender_user as tu INNER JOIN tenders WHERE tu.userid=? AND tu.tenderid=tenders.id;",array($this->id));
 		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
 		else return false;
 	}
