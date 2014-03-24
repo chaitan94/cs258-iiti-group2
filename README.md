@@ -22,7 +22,7 @@ We'll use the PHP package manager, composer to do this:
 
 # Team
 
-* Diksha Golait
-* Gaurav Meena
-* Krishna Chaitanya
-* Sai Vidyaranya
+* [Diksha Golait](https://github.com/dikshagolait/)
+* [Gaurav Meena](https://github.com/gxim/)
+* [Krishna Chaitanya](https://github.com/chaitan94/)
+* [Sai Vidyaranya](https://github.com/Vidyaranya/)

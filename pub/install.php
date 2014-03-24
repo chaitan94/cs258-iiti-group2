@@ -76,6 +76,8 @@ CREATE DATABASE IF NOT EXISTS `$dbname`;";
   `starttime` text,
   `closedate` text,
   `closetime` text,
+  `ownerid` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );";
   initTable($db,$dbname,$sqltenders,"tenders");
@@ -87,6 +89,7 @@ CREATE DATABASE IF NOT EXISTS `$dbname`;";
   `email` text NOT NULL,
   `phone` text NOT NULL,
   `type` text NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );";
   initTable($db,$dbname,$sqlusers,"users");
@@ -95,6 +98,7 @@ CREATE DATABASE IF NOT EXISTS `$dbname`;";
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tenderid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );";
   initTable($db,$dbname,$sqltenderuser,"tender_user");
