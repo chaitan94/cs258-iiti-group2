@@ -15,10 +15,14 @@ class User extends DB{
 		if($id){
 			$this->id = $id;
 			$r = $this->getOne($id);
-			$this->name = $r->name;
-			$this->email = $r->email;
-			$this->phone = $r->phone;
-			$this->type = $r->type;
+			if($r != false){
+				$this->name = $r->name;
+				$this->email = $r->email;
+				$this->phone = $r->phone;
+				$this->type = $r->type;
+			}else{
+				$this->id = 0;
+			}
 		}
 	}
 	public function getOne($id){
