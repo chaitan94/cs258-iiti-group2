@@ -1,5 +1,6 @@
 *.db
 *.sql
+pub/composer.lock
 pub/pma
 pub/pma/*
 pub/db.conf

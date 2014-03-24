@@ -16,9 +16,7 @@ To build the website on your PC
 The website uses password-compat library to encrypt passwords, so you should install that as well.
 We'll use the PHP package manager, composer to do this:
 
-* cd to root folder of project
-* install composer by running the command `php -r "readfile('https://getcomposer.org/installer');" | php`
-* then run `php composer.phar install`
+* Open terminal in pub folder and run `php composer.phar install`
 
 # Team
 
