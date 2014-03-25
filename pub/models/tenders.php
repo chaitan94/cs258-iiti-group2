@@ -58,7 +58,8 @@ class Tender extends DB{
 	}
 	public function getTendersByOwner($owner){
 		$r=$this->executeQuery("SELECT * FROM tenders WHERE ownerid = ? AND open = 'true';",array($owner));
-		return $r->fetchAll(PDO::FETCH_OBJ);
+		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
+		else return false;
 	}
 }
 ?>

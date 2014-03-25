@@ -38,35 +38,38 @@ include 'models/tenders.php'; $i=0;?>
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 </head>
 <body>
-	<div class="not-nav">
-		<main>
-		<ul>
-		
+<div class="not-nav">
+<main>
+<ul>	
 <?php $tender= new Tender();
 $r= $tender->getTendersByOwner($_SESSION['id']);?>
 <?php foreach ($r as $key => $value):?>
+<p>
+	<p>
+		<li><a href='#' ><?php echo 'Tender Document for '.$value->title;$i++;?></a></li>
+		<?php echo '&nbsp&nbspClosing date:';?> 
+	</p>
+	<div class="row">
+		<a href="<?php echo'#hide'.$i?>" class="hide" id="<?php echo'hide'.$i?>"><font class="link">View applications</font></a>
+		<a href="<?php echo'#show'.$i?>" class="show" id="<?php echo'show'.$i?>"><font class="link">Hide Aplications</font></a>
+		<div class="list">
+			<ul>
+			<?php $item = new Tender($value->id);
+			$tender_applicants = $item->getApplicants();
+			$no_applicants = count($tender_applicants);
 
-<p><p><li><a href='#' ><?php echo 'Tender Document for '.$value->title;$i++;?></a></li>
-<?php echo '&nbsp&nbspClosing date:';?> </p>
-<div class="row">
- <a  href=<?php echo'#hide'.$i?>  class="hide" id=<?php echo'hide'.$i?>><font class="link">View applications</font></a>
- <a  href=<?php echo'#show'.$i?> class="show" id=<?php echo'show'.$i?>><font class="link">Hide Aplications</font></a>
- <div class="list">
- <ul>
- <?php $item=new Tender($value->id);
- $tender_applicants= $item->getApplicants();
- $no_applicants=count($tender_applicants);?>
- <?php while($no_applicants>0):?>
- <li> <?php echo $tender_applicants[$no_applicants-1]->name;?></li>
- <?php $no_applicants--;?>
-<?php endwhile;?>
- </ul><br>
- </div>
- </div></p>
+			while($no_applicants>0):?>
+			<li> <?php echo $tender_applicants[$no_applicants-1]->name;?></li>
+			<?php $no_applicants--;
+			endwhile;?>
+			</ul><br>
+		</div>
+	</div>
+</p>
 <?php endforeach;?>
 </ul>
-		</main>
-	</div>
+</main>
+</div>
 </body>
 </html>
 
