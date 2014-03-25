@@ -6,33 +6,24 @@
 	vertical-align: top;
 	height: auto !important;
 }
-
 .list {
 	display: none;
 }
-
 .show {
 	display: none;
 }
-
 .hide:target+.show {
 	display: inline;
 }
-
 .hide:target {
 	display: none;
 }
-
 .hide:target  ~ .list {
 	display: inline;
 }
-
 .link {
 	color: #321212;
 }
-
-
-
 @media print {
 	.hide,.show {
 		display: none;
@@ -52,7 +43,7 @@ include 'models/tenders.php'; $i=0;?>
 		<ul>
 		
 <?php $tender= new Tender();
-$r= $tender.getTendersByOwner();?>
+$r= $tender->getTendersByOwner($_SESSION['id']);?>
 <?php foreach ($r as $key => $value):?>
 
 <p><p><li><a href='#' ><?php echo 'Tender Document for '.$value->title;$i++;?></a></li>
@@ -63,10 +54,10 @@ $r= $tender.getTendersByOwner();?>
  <div class="list">
  <ul>
  <?php $item=new Tender($value->id);
- $tender_applicants= $item.getApplicants();
+ $tender_applicants= $item->getApplicants();
  $no_applicants=count($tender_applicants);?>
  <?php while($no_applicants>0):?>
- <li> <?php echo $tender_applications->users.name;?></li>
+ <li> <?php echo $tender_applicants[$no_applicants-1]->name;?></li>
  <?php $no_applicants--;?>
 <?php endwhile;?>
  </ul><br>
