@@ -55,6 +55,15 @@ if(isset($urlpar[1])){
 					include_once('views/tenders/approve.php');
 				}else header('Location: /');
 				break;
+			case 'applications':
+				include_once('models/tender_user.php');
+				if(is_numeric($urlpar[2])){
+					$apl = new TenderUser($urlpar[2]);
+					if($apl->id){
+						include_once('views/tenders/applications/details.php');
+					}else header('Location: /');
+				}else header('Location: /');
+				break;
 			default:
 				header('Location: /404');
 		}

@@ -24,6 +24,18 @@ class TenderUser extends DB{
 		$r = $this->db->query("SELECT * FROM tender_user");
 		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
+	public function getUserDetails(){
+		if($this->id){
+			include_once('models/users.php');
+			return new User($this->userid);
+		}else return false;
+	}
+	public function getTenderDetails(){
+		if($this->id){
+			include_once('models/tenders.php');
+			return new Tender($this->tenderid);
+		}else return false;
+	}
 	function insert($a,$b){
 		$st = $this->db->prepare("SELECT id FROM tender_user WHERE tenderid=? AND userid=?;");
 		$st->execute(array($a,$b));

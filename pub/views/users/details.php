@@ -18,7 +18,7 @@
 	<tbody>
 	<?php
 	foreach($u->getTenders() as $v){
-		echo "<tr><td>$v->tenderid</td><td>$v->title</td><td><a href='/tender_application/$v->id'><input type='button' value='View application details'></a></td><td><a href='/tenders/$v->tenderid'><input type='button' value='View tender details'></a></td></tr>";
+		echo "<tr><td>$v->tenderid</td><td>$v->title</td><td><a href='/tenders/applications/$v->id'><input type='button' value='View application details'></a></td><td><a href='/tenders/$v->tenderid'><input type='button' value='View tender details'></a></td></tr>";
 	}
 	?>
 	</tbody>
