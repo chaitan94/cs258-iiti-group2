@@ -34,15 +34,15 @@ if(isset($urlpar[1])){
 				include_once('models/users.php');
 				$user = new User($_SESSION['id']);
 				if($user->type=='admin'){
+                    $completemsg=0;
 					switch($_SERVER['REQUEST_METHOD']){
 						case 'POST':
-							include 'models/tenders.php';
-							if((new Tender)->insert($_POST)) echo 1;
-							else echo 0;
-							break;
+							include_once('models/tenders.php');
+							if((new Tender)->insert($_POST,$_FILES)) $completemsg = 1;
+							else $completemsg = -1;
 						case 'GET':
 						default:
-							include 'models/tenders.php';
+							include_once('models/tenders.php');
 							include_once('views/tenders/new.php');
 							break;
 					}

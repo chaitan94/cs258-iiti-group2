@@ -1,5 +1,7 @@
 *.db
 *.sql
+*.fuse*
+.idea
 pub/composer.lock
 pub/pma
 pub/pma/*

@@ -15,8 +15,11 @@
 		<li data-id="2">Schedule of Quantity</li>
 		<li data-id="3">Essential requirements</li>
 	</ul>
-	<form id="newtenform" class="pure-form pure-form-aligned" novalidate>
-		<div class="step" data-id="1">
+	<form id="newtenform" class="pure-form pure-form-aligned" method="POST" action="/tenders/new" enctype="multipart/form-data">
+        <?php
+        if($completemsg==0){
+        ?>
+        <div class="step" data-id="1">
 			<legend>New tender</legend>
 			<fieldset>
 				<div class="pure-control-group"><label>Title</label><input name="title" type="text" required></div>
@@ -50,15 +53,23 @@
 				<div class="pure-controls"><input class="pure-button pure-button-primary" type="submit" value="Confirm and proceed to create form"></div>
 			</fieldset>
 		</div>
-		<div class="step" data-id="4">
+        <?php
+        }elseif($completemsg==1){
+        ?>
+		<div class="step" data-id="0">
 			<center><div style="margin:50px auto;font-weight:bold;">New tender uploaded successfully!</div></center>
 		</div>
-		<div class="step" data-id="5">
+        <?php
+        }elseif($completemsg==-1){
+        ?>
+		<div class="step" data-id="0">
 			<center><div style="margin:50px auto;color:#900;font-weight:bold;">Error uploading tender!</div></center>
 		</div>
+        <?php } ?>
 	</form>
 </main>
 </div>
+<?php if($completemsg==0){ ?>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript">
 var curstep = 1;
@@ -76,25 +87,12 @@ openstep(1);
 $("#newtenform").submit(function(e){
 	for (var i = $("#newtenform *[required]").length - 1; i >= 0; i--) {
 		if(!$($("#newtenform *[required]")[i]).val()){
-			alert("invalid");
-			// return false;
-			break;
+			alert("Please Enter all details.");
+			return false;
 		}
 	};
-	$.ajax({
-		url: '/tenders/new',
-		type: 'POST',
-		data: $("#newtenform").serializeArray(),
-	}).always(function(d) {
-		if(d=="1"){
-			openstep(4);
-			$(".steps li").unbind("click");
-		}else if(d=="0"){
-			openstep(5);
-		}
-	});
-	return false;
 });
 </script>
+<? } ?>
 </body>
 </html>

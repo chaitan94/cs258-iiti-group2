@@ -40,12 +40,17 @@ class Tender extends DB{
 		$r = $this->db->query("SELECT * FROM tenders");
 		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
-	public function insert($t){
-		$st = $this->executeQuery("INSERT INTO tenders(title,brief,emd,category,closedate,closetime,startdate,starttime,ownerid) 
+	public function insert($t,$f){
+        $st = $this->executeQuery("INSERT INTO tenders(title,brief,emd,category,closedate,closetime,startdate,starttime,ownerid)
 			VALUES(?,?,?,?,?,?,?,?,?);",
 			array($t['title'],$t['brief'],$t['emd'],$t['category'],$t['closedate'],$t['closetime'],$t['startdate'],$t['starttime'],$_SESSION['id']));
-		if($st) return true;
-		else return false;
+        if($st) {
+            $id = $this->db->lastInsertId();
+            mkdir("data/tenders/$id");
+            move_uploaded_file($f['NIT']['tmp_name'],"data/tenders/$id/NIT.pdf");
+            move_uploaded_file($f['tenderdoc']['tmp_name'],"data/tenders/$id/tenderdoc.pdf");
+            return true;
+        } else return false;
 	}
 	public function isAppliedBy($uid){
 		$r = $this->executeQuery("SELECT * FROM tender_user WHERE tenderid=? AND userid=?;",array($this->id,$uid));

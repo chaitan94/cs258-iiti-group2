@@ -23,8 +23,8 @@ include_once('views/nav.php');
 				<tr><th colspan="2">Tender Documents</th></tr>
 			</thead>
 			<tbody>
-				<tr><td>NIT</td><td><input type="button" class="pure-button" value="Download"></td></tr>
-				<tr><td>Tender Document</td><td><input type="button" class="pure-button" value="Download"></td></tr>
+				<tr><td>NIT</td><td><a href="/data/tenders/<?=$ten->id?>/NIT.pdf" download><input type="button" class="pure-button" value="Download"></a></td></tr>
+				<tr><td>Tender Document</td><td><a href="/data/tenders/<?=$ten->id?>/tenderdoc.pdf" download><input type="button" class="pure-button" value="Download"></a></td></tr>
 			</tbody>
 		</table>
 	</div>
