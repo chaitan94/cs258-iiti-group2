@@ -15,7 +15,7 @@
 		<li data-id="2">Schedule of Quantity</li>
 		<li data-id="3">Essential requirements</li>
 	</ul>
-	<form id="newtenform" class="pure-form pure-form-aligned" method="POST" action="/tenders/new" enctype="multipart/form-data">
+	<form id="newtenform" class="pure-form pure-form-aligned" method="POST" action="/tenders/new" enctype="multipart/form-data" novalidate>
         <?php
         if($completemsg==0){
         ?>
@@ -53,7 +53,6 @@
 					</div>
 				</div>
 				<div class="pure-controls"><input type="button" value="Add another item" onclick="add_item();"></div>
-				<div class="pure-controls"><input type="submit" value="Save details for the current item" name="submit"></div>
 			</fieldset>
 			<fieldset>
 				<div class="pure-controls"><input class="pure-button pure-button-primary" type="button" value="Continue" onclick="openstep(3);"></div>
@@ -63,6 +62,7 @@
 			<legend>New tender</legend>
 			<fieldset>
 				<div class="pure-controls"><input class="pure-button pure-button-primary" type="submit" value="Confirm and proceed to create form"></div>
+				<aside id="formmsg"><p></p></aside>
 			</fieldset>
 		</div>
         <?php
@@ -122,10 +122,10 @@ $(".steps li").click(function(){
 	openstep($(this).data("id"));
 });
 openstep(1);
-$("#newtenform").submit(function(e){
-	for (var i = $("#newtenform *[required]").length - 1; i >= 0; i--) {
-		if(!$($("#newtenform *[required]")[i]).val()){
-			alert("Please Enter all details.");
+$(document).delegate("#newtenform","submit",function(e){
+	for (var i = $("#newtenform [name][required]").length - 1; i >= 0; i--) {
+		if($("#newtenform [name][required]")[i].value==''){
+			$('#formmsg>p').html("Please Enter all details.<br>You can click the arrows at the top to go back to a specific step.");
 			return false;
 		}
 	};
