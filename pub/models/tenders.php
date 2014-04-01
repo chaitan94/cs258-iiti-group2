@@ -45,6 +45,8 @@ class Tender extends DB{
 		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
 	public function getSearchResults($terms, $num=10, $offset=0){
+		foreach ($terms as $key => $keyword)
+			$terms[$key] = preg_replace('/[^A-Za-z0-9\-]/', '', $keyword);
 		$like = implode($terms,"%' OR title LIKE '%");
 		$r = $this->db->query("SELECT * FROM tenders WHERE title LIKE '%$like%' ORDER BY timestamp DESC");
 		return $r->fetchAll(PDO::FETCH_OBJ);
