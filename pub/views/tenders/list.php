@@ -12,6 +12,11 @@
 ?>
 <div class="not-nav">
 <main>
+	<h1>Tenders list</h1>
+	<div class="tender-search-bar"><form><span>Search:</span><input type="text" name="s"><input type="submit" value="Go"></form></div>
+<?php if($searching){ ?>
+	<div class="tender-search-bar"><span><u>Showing results for:</u> <?=$_GET['s']?></span><a href='/tenders'><input type="button" value="View all"></a></div>
+<?php } ?>
 	<table style="width:100%;" class="pure-table tenderlist">
 	<thead>
 		<tr><th style="width:40%;">Title</th><th style="width:40%;">EMD</th><th style="width:20%;"></th></tr>

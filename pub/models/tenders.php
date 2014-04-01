@@ -40,6 +40,15 @@ class Tender extends DB{
 		$r = $this->db->query("SELECT * FROM tenders");
 		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
+	public function getRecent($num=10, $offset=0){
+		$r = $this->db->query("SELECT * FROM tenders ORDER BY timestamp DESC LIMIT $num OFFSET $offset;");
+		return $r->fetchAll(PDO::FETCH_OBJ);
+	}
+	public function getSearchResults($terms, $num=10, $offset=0){
+		$like = implode($terms,"%' OR title LIKE '%");
+		$r = $this->db->query("SELECT * FROM tenders WHERE title LIKE '%$like%' ORDER BY timestamp DESC");
+		return $r->fetchAll(PDO::FETCH_OBJ);
+	}
 	public function insert($t,$f){
         $st = $this->executeQuery("INSERT INTO tenders(title,brief,emd,category,closedate,closetime,startdate,starttime,ownerid)
 			VALUES(?,?,?,?,?,?,?,?,?);",

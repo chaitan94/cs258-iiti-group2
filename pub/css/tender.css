@@ -4,3 +4,11 @@
 .tenderlist tbody tr:hover{
 	background: #F3F3F3;
 }
+.tender-search-bar{
+	border: 1px solid #CCC;
+	background: #DDD;
+}
+.tender-search-bar span,
+.tender-search-bar input{
+	padding: 5px 15px;
+}

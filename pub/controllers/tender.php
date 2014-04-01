@@ -71,7 +71,13 @@ if(isset($urlpar[1])){
 }else{
 	include 'models/tenders.php';
 	$ten = new Tender();
-	$r = $ten->getAll();
+	$searching=false;
+	$r;
+	if(isset($_GET['s'])){
+		$searching = true;
+		$terms = explode(' ',$_GET['s']);
+		$r = $ten->getSearchResults($terms);
+	} else $r = $ten->getRecent();
 	include_once('views/tenders/list.php');
 }
 ?>
