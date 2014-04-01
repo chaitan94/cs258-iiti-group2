@@ -42,7 +42,19 @@
 			</fieldset>
 		</div>
 		<div class="step" data-id="2">
-			<legend>New tender</legend>
+			<legend>Details of the items</legend>
+			<fieldset>
+				<div class="soq-items">
+					<div class="soq-item">
+						<legend>Item #1</legend>
+						<div class="pure-control-group"><label>Item with Specifications</label><textarea type="text" rows="8" cols="50" required></textarea></div>
+						<div class="pure-control-group"><label>Quantity</label><input type="text" required></div>
+						<div class="pure-control-group"><label>EMD in INR</label><input type="text" required></div>
+					</div>
+				</div>
+				<div class="pure-controls"><input type="button" value="Add another item" onclick="add_item();"></div>
+				<div class="pure-controls"><input type="submit" value="Save details for the current item" name="submit"></div>
+			</fieldset>
 			<fieldset>
 				<div class="pure-controls"><input class="pure-button pure-button-primary" type="button" value="Continue" onclick="openstep(3);"></div>
 			</fieldset>
@@ -73,7 +85,28 @@
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript">
 var curstep = 1;
-function openstep(n){
+var item_no = 1;
+var add_item = function(){
+	item_no++;
+	$(".soq-items").append('<div class="soq-item"><legend>Item #'+item_no+'</legend>\
+					<div class="pure-control-group"><label>Item with Specifications</label><textarea type="text" rows="8" cols="50" required></textarea></div>\
+					<div class="pure-control-group"><label>Quantity</label><input type="text" required></div>\
+					<div class="pure-control-group"><label>EMD in INR</label><input type="text" required></div>\
+					<div class="pure-controls"><input type="button" class="soq-remove" value="Remove this item";"></div>\
+				</div>');
+	$('.soq-remove').click(function(){
+		item_no--;
+		var p = $(this).parent().parent();
+		p.slideUp(300,function(){
+			p.remove();
+			var items = $('.soq-item');
+			for (var i = 0; i < items.length; i++) {
+				$(items[i]).children('legend').html('Item #'+(i+1));
+			};
+		});
+	});
+}
+var openstep = function(n){
 	$(".step").fadeOut(200).promise().done(function(){
 		$(".step[data-id="+n+"]").fadeIn(200);
 	});
