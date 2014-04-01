@@ -88,13 +88,17 @@ var curstep = 1;
 var item_no = 1;
 var add_item = function(){
 	item_no++;
-	$(".soq-items").append('<div class="soq-item"><legend>Item #'+item_no+'</legend>\
+	var newItem = $('<div class="soq-item"><legend>Item #'+item_no+'</legend>\
 					<div class="pure-control-group"><label>Item with Specifications</label><textarea type="text" rows="8" cols="50" required></textarea></div>\
 					<div class="pure-control-group"><label>Quantity</label><input type="text" required></div>\
 					<div class="pure-control-group"><label>EMD in INR</label><input type="text" required></div>\
 					<div class="pure-controls"><input type="button" class="soq-remove" value="Remove this item";"></div>\
 				</div>');
-	$('.soq-remove').click(function(){
+	newItem.hide();
+	$(".soq-items").append(newItem);
+	newItem.slideDown(300);
+	$('.soq-remove').unbind('click');
+	$('.soq-remove').click(function(e){
 		item_no--;
 		var p = $(this).parent().parent();
 		p.slideUp(300,function(){
@@ -104,6 +108,7 @@ var add_item = function(){
 				$(items[i]).children('legend').html('Item #'+(i+1));
 			};
 		});
+		e.preventDefault();
 	});
 }
 var openstep = function(n){
