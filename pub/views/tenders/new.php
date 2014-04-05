@@ -92,7 +92,7 @@ var add_item = function(){
 					<div class="pure-control-group"><label>Item with Specifications</label><textarea type="text" rows="8" cols="50" required></textarea></div>\
 					<div class="pure-control-group"><label>Quantity</label><input type="text" required></div>\
 					<div class="pure-control-group"><label>EMD in INR</label><input type="text" required></div>\
-					<div class="pure-controls"><input type="button" class="soq-remove" value="Remove this item";"></div>\
+					<div class="pure-controls"><input type="button" class="soq-remove" value="Remove this item"></div>\
 				</div>');
 	newItem.hide();
 	$(".soq-items").append(newItem);
@@ -131,6 +131,6 @@ $(document).delegate("#newtenform","submit",function(e){
 	};
 });
 </script>
-<? } ?>
+<?php } ?>
 </body>
 </html>

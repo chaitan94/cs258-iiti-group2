@@ -40,9 +40,14 @@ class Tender extends DB{
 		$r = $this->db->query("SELECT * FROM tenders");
 		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
+	public function getCount(){
+		$r = $this->db->query("SELECT COUNT(id) FROM tenders;");
+		return intval($r->fetch()[0]);
+	}
 	public function getRecent($num=10, $offset=0){
 		$r = $this->db->query("SELECT * FROM tenders ORDER BY timestamp DESC LIMIT $num OFFSET $offset;");
-		return $r->fetchAll(PDO::FETCH_OBJ);
+		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
+		else return false;
 	}
 	public function getSearchResults($terms, $num=10, $offset=0){
 		foreach ($terms as $key => $keyword)

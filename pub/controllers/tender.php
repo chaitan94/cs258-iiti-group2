@@ -77,7 +77,13 @@ if(isset($urlpar[1])){
 		$searching = true;
 		$terms = explode(' ',$_GET['s']);
 		$r = $ten->getSearchResults($terms);
-	} else $r = $ten->getRecent();
+	} else {
+		$page = 1;
+		$countperpage = 10;
+		$count = $ten->getCount();
+		if(isset($_GET['p'])){ $page = $_GET['p']; }
+		$r = $ten->getRecent($countperpage,($page-1)*$countperpage);
+	}
 	include_once('views/tenders/list.php');
 }
 ?>

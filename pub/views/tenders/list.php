@@ -19,16 +19,26 @@
 <?php } ?>
 	<table style="width:100%;" class="pure-table tenderlist">
 	<thead>
-		<tr><th style="width:40%;">Title</th><th style="width:40%;">EMD</th><th style="width:20%;"></th></tr>
+		<tr><th style="width:4%;">#</th><th style="width:40%;">Title</th><th style="width:40%;">EMD</th><th style="width:16%;"></th></tr>
 	</thead>
 	<tbody>
 	<?php
 	foreach ($r as $key => $value) {
-		echo '<tr><td>'.$value->title.'</td><td>'.$value->emd.'</td><td><a href="/tenders/'.$value->id.'"><input class="pure-button" type="button" value="Details"></a></td></tr>';
+		echo "<tr><td>$value->id</td><td>$value->title</td><td>$value->emd</td><td><a href='/tenders/$value->id'><input class='pure-button' type='button' value='Details'></a></td></tr>";
 	}
 	?>
 	</tbody>
 	</table>
+	<?php if(!$searching){ ?>
+	<div class="tender-search-bar"><span>Go to page:</span>
+		<?php 
+		$n = ceil($count/$countperpage);
+		for ($i=1; $i <= $n; $i++) { 
+			echo '<a href="/tenders?p='.$i.'">'.$i.'</a> ';
+		}
+		?>
+	</div>
+	<?php } ?>
 </main>
 </div>
 </body>
