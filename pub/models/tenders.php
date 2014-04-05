@@ -63,6 +63,9 @@ class Tender extends DB{
         if($st) {
             $id = $this->db->lastInsertId();
             mkdir("data/tenders/$id");
+            $json = fopen("data/tenders/$id/soq.json", "w");
+            fwrite($json, $t['itemsjson']);
+            fclose($json);
             move_uploaded_file($f['NIT']['tmp_name'],"data/tenders/$id/NIT.pdf");
             move_uploaded_file($f['tenderdoc']['tmp_name'],"data/tenders/$id/tenderdoc.pdf");
             return true;

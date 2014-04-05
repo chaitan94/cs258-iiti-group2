@@ -52,6 +52,7 @@
 						<div class="pure-control-group"><label>EMD in INR</label><input type="text" required></div>
 					</div>
 				</div>
+				<input type="hidden" name="itemsjson" id="itemsjson">
 				<div class="pure-controls"><input type="button" value="Add another item" onclick="add_item();"></div>
 			</fieldset>
 			<fieldset>
@@ -129,6 +130,18 @@ $(document).delegate("#newtenform","submit",function(e){
 			return false;
 		}
 	};
+	var s = '[';
+	items = $(".soq-item");
+	for (var i = 0; i < items.length; i++) {
+		s += '{';
+		s += '"specification":"'+$($($(".soq-item")[i]).children("div")[0]).children("textarea").val()+'",';
+		s += '"quantity":"'+$($($(".soq-item")[i]).children("div")[1]).children("input").val()+'",';
+		s += '"emd":"'+$($($(".soq-item")[i]).children("div")[2]).children("input").val()+'"';
+		s += '}';
+		if(i!=items.length-1) s += ',';
+	};
+	s += ']';
+	$("#itemsjson").val(s);
 });
 </script>
 <?php } ?>

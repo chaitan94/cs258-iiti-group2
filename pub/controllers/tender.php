@@ -37,6 +37,8 @@ if(isset($urlpar[1])){
                     $completemsg=0;
 					switch($_SERVER['REQUEST_METHOD']){
 						case 'POST':
+							if(!(isset($_POST['title'])&&isset($_POST['brief'])&&isset($_POST['emd'])&&isset($_POST['category'])&&isset($_POST['closedate'])&&isset($_POST['closetime'])&&isset($_POST['startdate'])&&isset($_POST['starttime'])&&isset($_POST['itemsjson'])))
+								header('Location: /');
 							include_once('models/tenders.php');
 							if((new Tender)->insert($_POST,$_FILES)) $completemsg = 1;
 							else $completemsg = -1;
