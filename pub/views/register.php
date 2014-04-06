@@ -36,7 +36,11 @@ $("#reg").submit(function(e){
 		url:'/users',
 		type:'POST',
 		data:$(this).serializeArray(),
-		success:function(d){if(d)alert(d);}
+		dataType:'json',
+		success:function(d){
+			if(!d.success) alert(d.msg);
+			else window.open('/','_self');
+		}
 	});
 	return false;
 });

@@ -84,7 +84,9 @@ if(isset($urlpar[1])){
 		$countperpage = 10;
 		$count = $ten->getCount();
 		if(isset($_GET['p'])){ $page = $_GET['p']; }
+		if($page < 1) $page = 1;
 		$r = $ten->getRecent($countperpage,($page-1)*$countperpage);
+		if(sizeof($r)==0 && $count!=0){header('Location: /tenders');};
 	}
 	include_once('views/tenders/list.php');
 }

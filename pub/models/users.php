@@ -38,12 +38,13 @@ class User extends DB{
 		if(!$st->rowCount()){
 			include_once('vendor/ircmaxell/password-compat/lib/password.php');
 			$st=$this->db->prepare("INSERT INTO users(name,pass,email,phone,type) VALUES(?,?,?,?,?);");
-			$st->execute(array($u['name'],
+			if($st->execute(array($u['name'],
 								password_hash($u['pass'],PASSWORD_BCRYPT),
 								$u['email'],
 								$u['phone'],
-								$u['type']));
-			return $this->db->lastInsertId();
+								$u['type'])))
+				return $this->db->lastInsertId();
+			else return 0;
 		} else return -1;
 	}
 	public function getTenders(){
