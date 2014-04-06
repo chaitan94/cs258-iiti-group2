@@ -23,8 +23,20 @@ include_once('views/nav.php');
 				<tr><th colspan="2">Tender Documents</th></tr>
 			</thead>
 			<tbody>
-				<tr><td>NIT</td><td><a href="/data/tenders/<?=$ten->id?>/NIT.pdf" download><input type="button" class="pure-button" value="Download"></a></td></tr>
-				<tr><td>Tender Document</td><td><a href="/data/tenders/<?=$ten->id?>/tenderdoc.pdf" download><input type="button" class="pure-button" value="Download"></a></td></tr>
+				<tr><td>NIT</td><td>
+				<?php 
+					if(file_exists("data/tenders/$ten->id/NIT.pdf")){
+						echo "<a href='/data/tenders/$ten->id/NIT.pdf' download><input type='button' class='pure-button' value='Download'></a>";
+					}else echo "unavailable"; 
+				?>
+				</td></tr>
+				<tr><td>Tender Document</td><td>
+				<?php 
+					if(file_exists("data/tenders/$ten->id/tenderdoc.pdf")){
+						echo "<a href='/data/tenders/$ten->id/tenderdoc.pdf' download><input type='button' class='pure-button' value='Download'></a>";
+					}else echo "unavailable"; 
+				?>
+				</td></tr>
 			</tbody>
 		</table>
 	</div>
