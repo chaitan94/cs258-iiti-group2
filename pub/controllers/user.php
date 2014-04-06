@@ -21,21 +21,6 @@ if(isset($urlpar[1])){
 					echo 'Passwords do not match!';
 			}else echo 'All details necessary';
 			break;
-		case 'GET':
-		default:
-			include('models/users.php');
-			$db = new User();
-			$st=$db->db->prepare("SELECT * FROM users;");
-			$st->execute();
-			$res=$st->fetchAll(PDO::FETCH_ASSOC);
-			// var_dump($res);
-			foreach ($res as $key => $value) {
-				foreach ($value as $key => $va) {
-					echo $va.' ';
-				}
-				echo '<br>';
-			}
-			break;
 	}
 }
 ?>

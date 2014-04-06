@@ -28,6 +28,26 @@ include_once('views/nav.php');
 			</tbody>
 		</table>
 	</div>
+	<div class="tenderdoc">
+	<?php
+		if(file_exists("data/tenders/$ten->id/soq.json")){
+			$soq = fopen("data/tenders/$ten->id/soq.json","r");
+			$soqdata = json_decode(fread($soq,200));
+	?>
+		<table class="pure-table">
+			<thead>
+				<tr><th colspan="3">SOQ</th></tr>
+			</thead>
+			<tbody>
+			<?php 
+				foreach ($soqdata as $key => $value) {
+					echo "<tr><td>$value->specification</td><td>$value->quantity</td><td>$value->emd</td></tr>";
+				}
+			?>
+			</tbody>
+		</table>
+	<?php }else echo "SOQ unavailable"; ?>
+	</div>
 	<?php
 		if(isset($_SESSION['id'])){
 			if($ten->isAppliedBy($_SESSION['id'])){
