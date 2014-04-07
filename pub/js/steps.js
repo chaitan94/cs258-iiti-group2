@@ -1,7 +1,8 @@
+var openstep;
 (function(){
 var curstep = 1;
 var item_no = 1;
-var add_item = function(){
+$(".add-item").click(function(){
 	item_no++;
 	var newItem = $('<div class="soq-item"><legend>Item #'+item_no+'</legend>\
 					<div class="pure-control-group"><label>Item with Specifications</label><textarea type="text" rows="8" cols="50" required></textarea></div>\
@@ -25,14 +26,14 @@ var add_item = function(){
 		});
 		e.preventDefault();
 	});
-}
-var openstep = function(n){
+});
+openstep = function(n){
 	$(".step").fadeOut(200).promise().done(function(){
 		$(".step[data-id="+n+"]").fadeIn(200);
 	});
 	$(".steps li").removeClass('selected');
 	$(".steps li[data-id="+n+"]").addClass('selected');
-}
+};
 $(".steps li").click(function(){
 	openstep($(this).data("id"));
 });

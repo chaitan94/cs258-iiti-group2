@@ -15,6 +15,7 @@
 		<li data-id="2">Schedule of Quantity</li>
 		<li data-id="3">Essential requirements</li>
 	</ul>
+	<noscript><b><span style="color:red;">Javascript must be enabled in your browser!</span></b></noscript>
 	<form id="newtenform" class="pure-form pure-form-aligned" method="POST" action="/tenders/new" enctype="multipart/form-data" novalidate>
         <?php
         if($completemsg==0){
@@ -53,7 +54,7 @@
 					</div>
 				</div>
 				<input type="hidden" name="itemsjson" id="itemsjson">
-				<div class="pure-controls"><input type="button" value="Add another item" onclick="add_item();"></div>
+				<div class="pure-controls"><input type="button" value="Add another item" class="add-item"></div>
 			</fieldset>
 			<fieldset>
 				<div class="pure-controls"><input class="pure-button pure-button-primary" type="button" value="Continue" onclick="openstep(3);"></div>
