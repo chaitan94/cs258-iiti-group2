@@ -93,6 +93,7 @@ var Question = function(n){
 	this.qid = n-1;
 	this.getJSON = function(){
 		var s = '{"question":"'+this.getQ()+'",';
+		s += '"weight":"'+this.getWeight()+'"';
 		s += '"options":[';
 		var options = $(this.dom).find(".active");
 		for (var i = 0; i < options.length; i++) {
@@ -104,6 +105,7 @@ var Question = function(n){
 				s += inps[j*2+1].value+'"}';
 				if(j!=inplen/2-1) s+= ',';
 			};
+			if(i!=options.length-1) s+= ',';
 		};
 		s += ']}';
 		return s;
