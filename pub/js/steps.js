@@ -1,4 +1,5 @@
-(function(){var curstep = 1;
+(function(){
+var curstep = 1;
 var item_no = 1;
 var add_item = function(){
 	item_no++;
@@ -56,4 +57,99 @@ $(document).delegate("#newtenform","submit",function(e){
 	s += ']';
 	$("#itemsjson").val(s);
 });
+
+var optionOnBlur = function(){
+	var a = $(this);
+	var option = a.parent()[0];
+	var question = a.parent().parent();
+	var l = question.find(".option");
+	var inps = $(option).find("input");
+	if((!inps[0].value)&&(!inps[1].value)){
+		if(l[l.length-1]==option){
+			$(option).addClass("inactive");
+		}else{
+			$(option).remove();
+		}
+	}
+	a.bind("focus",optionOnFocus);
+};
+var optionOnFocus = function(){
+	var a = $(this);
+	var option = a.parent();
+	var question = a.parent().parent();
+	a.unbind("focus");
+	a.bind("blur",optionOnBlur);
+	if(option.hasClass('inactive')){
+		option.removeClass('inactive');
+		option.addClass('active');
+		var questionObj = questions.get(question.data("id")-1);
+		if(questionObj.getNoofOptions()<4)
+			questionObj.addOption();
+	}
+};
+var Question = function(n){
+	this.qid = n-1;
+	this.getNoofOptions = function(){
+		return $(this.dom).find(".option").length;
+	};
+	this.getWeight = function(){
+		return $(this.dom).find(".question-weight").val();
+	};
+	this.setWeight = function(w){
+		$(this.dom).find(".question-weight").val(w);
+	};
+	this.setNo = function(n){
+		$(this.dom).find("legend").html("Question #"+n);
+		$(this.dom).data("id",n);
+	};
+	this.setQ = function(q){
+		$(this.dom).find(".question-text").html(q);
+	};
+	this.addOption = function(){
+		var opt = $('<div class="pure-control-group inactive option"><label>Option</label><input type="text" required><label>Marks</label><input type="text" required></div>');
+		$(this.dom).append(opt);
+		opt.find("input").bind("focus",optionOnFocus);
+	}
+	this.init = function(n){
+		var html = $('<div class="question" data-id="'+n+'">\
+							<legend>Question #'+n+'</legend>\
+							<div class="pure-control-group"><label>Question</label><textarea class="question-text" type="text" rows="4" cols="50" required></textarea></div>\
+							<div class="pure-control-group"><label>Question Weightage</label><input type="text" class="question-weight" required></input></div>\
+							<div class="pure-control-group active option"><label>Option</label><input type="text" required><label>Marks</label><input type="text" value="100" required></div>\
+							<div class="pure-control-group inactive option"><label>Option</label><input type="text" required><label>Marks</label><input type="text" required></div>\
+							<div class="pure-controls"><button class="remove-question">Remove this question</button></div></div>');
+		this.dom = html[0];
+		html.find('.remove-question').click(function(){
+			questions.remove($(this));
+			return false;
+		});
+		return this.dom;
+	};
+	this.init(n);
+}
+var questions = {
+	list: [],
+	get: function(i){return this.list[i];},
+	add: function(){
+		var a = new Question(this.list.length+1);
+		this.list.push(a);
+		$('.questionnaire').append(a.dom);
+		$(a.dom).slideUp(0);
+		$(a.dom).slideDown(300);
+		$(a.dom).find(".option input").bind("focus",optionOnFocus);
+	},
+	remove: function(self){
+		var q = self.parent().parent();
+		var id = q.data("id")-1;
+		q.slideUp(300,function(){
+			q.remove();
+			questions.list.splice(id,1);
+			for (var j = id; j < questions.list.length; j++) {
+				questions.list[j].setNo(j+1);
+			};
+		});
+	}
+}
+questions.add();
+$(".add-question").click(function(){questions.add();});
 })();

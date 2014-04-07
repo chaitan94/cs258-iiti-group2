@@ -49,3 +49,6 @@ color: white !important;
 .steps>li.selected:after{
 border-left-color: #44aacc !important;
 }
+.inactive.option{
+	opacity: 0.5;
+}

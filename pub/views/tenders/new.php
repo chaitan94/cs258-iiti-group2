@@ -62,6 +62,9 @@
 		<div class="step" data-id="3">
 			<legend>Questionnaire</legend>
 			<fieldset>
+				<div class="questionnaire">
+				</div>
+				<div class="pure-controls"><input type="button" class="add-question" value="Add another question"></div>
 				<div class="pure-controls"><input class="pure-button pure-button-primary" type="submit" value="Confirm and proceed to create form"></div>
 				<aside id="formmsg"><p></p></aside>
 			</fieldset>
