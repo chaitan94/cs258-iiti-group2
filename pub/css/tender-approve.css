@@ -1,0 +1,27 @@
+.row {
+	vertical-align: top;
+	height: auto !important;
+}
+.list {
+	display: none;
+}
+.show {
+	display: none;
+}
+.hide:target+.show {
+	display: inline;
+}
+.hide:target {
+	display: none;
+}
+.hide:target  ~ .list {
+	display: inline;
+}
+.link {
+	color: #321212;
+}
+@media print {
+	.hide,.show {
+		display: none;
+	}
+}

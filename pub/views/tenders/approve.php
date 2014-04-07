@@ -1,39 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-.row {
-	vertical-align: top;
-	height: auto !important;
-}
-.list {
-	display: none;
-}
-.show {
-	display: none;
-}
-.hide:target+.show {
-	display: inline;
-}
-.hide:target {
-	display: none;
-}
-.hide:target  ~ .list {
-	display: inline;
-}
-.link {
-	color: #321212;
-}
-@media print {
-	.hide,.show {
-		display: none;
-	}
-}
-</style>
-
 <?php include 'views/nav.php';
 include 'models/tenders.php'; $i=0;?>
 	<title>Approve | Tender</title>
+<link rel="stylesheet" type="text/css" href="/css/tender-approve.css">
 <link rel="stylesheet" type="text/css" href="/css/pure.min.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 </head>
