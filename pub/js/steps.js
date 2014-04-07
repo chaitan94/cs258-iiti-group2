@@ -57,6 +57,7 @@ $(document).delegate("#newtenform","submit",function(e){
 	};
 	s += ']';
 	$("#itemsjson").val(s);
+	$("#questionnairejson").val(questions.getJSON());
 });
 
 var optionOnBlur = function(){
@@ -90,6 +91,26 @@ var optionOnFocus = function(){
 };
 var Question = function(n){
 	this.qid = n-1;
+	this.getJSON = function(){
+		var s = '{"question":"'+this.getQ()+'",';
+		s += '"options":[';
+		var options = $(this.dom).find(".active");
+		for (var i = 0; i < options.length; i++) {
+			var inps = $(options[i]).find("input");
+			var inplen = inps.length;
+			for (var j = 0; j < (inplen)/2; j++) {
+				s += '{"option":"';
+				s += inps[j*2].value+'","marks":"';
+				s += inps[j*2+1].value+'"}';
+				if(j!=inplen/2-1) s+= ',';
+			};
+		};
+		s += ']}';
+		return s;
+	};
+	this.getQ = function(){
+		return $(this.dom).find(".question-text").val();
+	};
 	this.getNoofOptions = function(){
 		return $(this.dom).find(".option").length;
 	};
@@ -104,7 +125,7 @@ var Question = function(n){
 		$(this.dom).data("id",n);
 	};
 	this.setQ = function(q){
-		$(this.dom).find(".question-text").html(q);
+		$(this.dom).find(".question-text").val(q);
 	};
 	this.addOption = function(){
 		var opt = $('<div class="pure-control-group inactive option"><label>Option</label><input type="text" required><label>Marks</label><input type="text" required></div>');
@@ -115,10 +136,11 @@ var Question = function(n){
 		var html = $('<div class="question" data-id="'+n+'">\
 							<legend>Question #'+n+'</legend>\
 							<div class="pure-control-group"><label>Question</label><textarea class="question-text" type="text" rows="4" cols="50" required></textarea></div>\
+							<div class="pure-controls"><button class="remove-question">Remove this question</button></div>\
 							<div class="pure-control-group"><label>Question Weightage</label><input type="text" class="question-weight" required></input></div>\
 							<div class="pure-control-group active option"><label>Option</label><input type="text" required><label>Marks</label><input type="text" value="100" required></div>\
 							<div class="pure-control-group inactive option"><label>Option</label><input type="text" required><label>Marks</label><input type="text" required></div>\
-							<div class="pure-controls"><button class="remove-question">Remove this question</button></div></div>');
+						</div>');
 		this.dom = html[0];
 		html.find('.remove-question').click(function(){
 			questions.remove($(this));
@@ -149,6 +171,16 @@ var questions = {
 				questions.list[j].setNo(j+1);
 			};
 		});
+	},
+	getJSON: function(){
+		var s = "[";
+		var n = this.list.length;
+		for (var i = 0; i < n; i++) {
+			s += this.list[i].getJSON();
+			if(i!=n-1) s+=",";
+		};
+		s += "]";
+		return s;
 	}
 }
 questions.add();

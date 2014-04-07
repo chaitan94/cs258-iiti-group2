@@ -68,6 +68,7 @@
 				<div class="pure-controls"><input type="button" class="add-question" value="Add another question"></div>
 				<div class="pure-controls"><input class="pure-button pure-button-primary" type="submit" value="Confirm and proceed to create form"></div>
 				<aside id="formmsg"><p></p></aside>
+				<input type="hidden" name="questionnairejson" id="questionnairejson">
 			</fieldset>
 		</div>
         <?php
