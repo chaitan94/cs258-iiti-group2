@@ -32,6 +32,10 @@ html,body{
 	font-weight: normal;
 }
 *{}
+/*a{
+	text-decoration: inherit;
+	color: inherit;
+}*/
 .left{float: left;}
 .right{float: right;}
 nav{font-family: Quicksand;

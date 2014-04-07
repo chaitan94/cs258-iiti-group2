@@ -25,3 +25,21 @@
 		display: none;
 	}
 }
+.tender-applications{
+	border: 1px solid #CCC;
+}
+.tender-application{
+	margin-bottom: 15px;
+}
+.tender-application a{
+	color: inherit;
+	text-decoration: none;
+}
+.tender-application .title{
+	padding: 5px 15px;
+	background: #66666e;
+	color: #EEE;
+}
+.tender-application .row{
+	padding: 15px;
+}
