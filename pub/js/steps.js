@@ -68,9 +68,13 @@ var optionOnBlur = function(){
 	var inps = $(option).find("input");
 	if((!inps[0].value)&&(!inps[1].value)){
 		if(l[l.length-1]==option){
+			$(option).removeClass("active");
 			$(option).addClass("inactive");
 		}else{
 			$(option).remove();
+			if($(l[l.length-1]).hasClass("active")){
+				questions.get(question.data('id')-1).addOption();
+			}
 		}
 	}
 	a.bind("focus",optionOnFocus);
