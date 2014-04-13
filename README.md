@@ -18,6 +18,9 @@ We'll use the PHP package manager, composer to do this:
 
 * Open terminal in pub folder and run `php composer.phar install`
 
+# Running tests
+Open terminal in pub folder and run `php test`
+
 # Team
 
 * [Diksha Golait](https://github.com/dikshagolait/)

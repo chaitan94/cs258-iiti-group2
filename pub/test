@@ -1,0 +1,3 @@
+#!/usr/bin/env php
+<?php
+system('php vendor/phpunit/phpunit/phpunit.php tests/UserTest.php');
