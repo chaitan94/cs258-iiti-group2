@@ -19,6 +19,11 @@ include_once('views/nav.php');
 ?>
 	Applicant: <?=$user->name?><br>
 	Tender Title: <?=$tender->title?><br>
+<?php if($unrestricted){ ?>
+<h3>Detailed details: [Visible only to you and admins]</h3>
+<h4>SOQ Response:</h4>
+<h4>Questionnaire Response:</h4>
+<?php } ?>
 </main>
 </div>
 </body>

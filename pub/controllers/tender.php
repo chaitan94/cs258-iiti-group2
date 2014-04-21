@@ -69,9 +69,12 @@ if(isset($urlpar[1])){
 				break;
 			case 'applications':
 				include_once('models/tender_user.php');
+				include_once('models/tenders.php');
 				if(is_numeric($urlpar[2])){
 					$apl = new TenderUser($urlpar[2]);
+					$ten = new Tender($apl->tenderid);
 					if($apl->id){
+						$unrestricted = ($apl->userid == $_SESSION['id'] || $ten->ownerid == $_SESSION['id']);
 						include_once('views/tenders/applications/details.php');
 					}else header('Location: /');
 				}else header('Location: /');
