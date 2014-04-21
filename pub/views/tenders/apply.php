@@ -29,7 +29,7 @@ $ten = new Tender($dno);
 				$soq = json_decode(fread($f, 1000));
 				fclose($f);
 				foreach ($soq as $key => $value) {
-					echo "<tr><td>$value->specification</td><td>$value->quantity</td><td>$value->emd</td><td><input type='text' required></td></tr>";
+					echo "<tr><td>$value->specification</td><td>$value->quantity</td><td>$value->emd</td><td><input type='text' name='soq$key' required></td></tr>";
 				};
 			}else{
 				echo "SOQ unavailable";
@@ -40,15 +40,16 @@ $ten = new Tender($dno);
 		</fieldset>
 		<fieldset>
 			<legend>Questionnaire</legend>
+			<div id="questionnaire">
 			<?php
 			if(file_exists("data/tenders/$ten->id/questionnaire.json")){
 				$f = fopen("data/tenders/$ten->id/questionnaire.json", "r");
 				$questionnaire = json_decode(fread($f, 1000));
 				fclose($f);
 				foreach ($questionnaire as $key => $value) {
-					echo "<div><h4>$value->question</h4>";
+					echo "<div class='question'><h4>$value->question</h4>";
 					foreach ($value->options as $k => $v) {
-						echo "<input type='radio' name='q$key' value='$k'>$v->option<br>";
+						echo "<input type='radio' name='q$key' value='$k' required> $v->option<br>";
 					}
 					echo "</div>";
 				}
@@ -56,6 +57,7 @@ $ten = new Tender($dno);
 				echo "Questionnaire unavailable";
 			}
 			?>
+			</div>
 		</fieldset>
 		<fieldset>
 			<div class="pure-controls"><input type="submit" class="pure-button pure-button-primary"></div>

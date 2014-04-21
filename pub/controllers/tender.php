@@ -13,11 +13,21 @@ if(isset($urlpar[1])){
 		}else{
 			switch ($_SERVER['REQUEST_METHOD']) {
 				case 'POST':
-					if(isset($_POST['name'])){
+					if(sizeof($_POST) != 0){
 						if(isset($_SESSION['id'])){
 							include_once('models/tender_user.php');
+							$got = $_POST;
+							$madeq = array();
+							$madesoq = array();
+							foreach ($got as $key => $value) {
+								if($key[0] == 'q'){
+									$madeq[intval($key[1])] = $value;
+								}else{
+									$madesoq[intval($key[3])] = $value;
+								}
+							}
 							$tu = new TenderUser();
-							$tu->insert($dno,$_SESSION['id']);
+							$tu->insert($dno, $_SESSION['id'], json_encode($madesoq), json_encode($madeq));
 						}
 					}
 				case 'GET':

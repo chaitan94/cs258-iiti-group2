@@ -36,7 +36,7 @@ class TenderUser extends DB{
 			return new Tender($this->tenderid);
 		}else return false;
 	}
-	function insert($a,$b){
+	function insert($a, $b, $soq, $q){
 		$st = $this->db->prepare("SELECT id FROM tender_user WHERE tenderid=? AND userid=?;");
 		$st->execute(array($a,$b));
 		if(!$st->rowCount()){
@@ -45,6 +45,15 @@ class TenderUser extends DB{
 			$this->id=$this->db->lastInsertId();
 			$this->userid=$b;
 			$this->tenderid=$a;
+
+            mkdir("data/tender_applications/$this->id");
+	        $soqjson = fopen("data/tender_applications/$this->id/soq_response.json", "w");
+	        fwrite($soqjson, $soq);
+	        fclose($soqjson);
+
+	        $qjson = fopen("data/tender_applications/$this->id/questionnaire_response.json", "w");
+	        fwrite($qjson, $q);
+	        fclose($qjson);
 		}
 	}
 }
