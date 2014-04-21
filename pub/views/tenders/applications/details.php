@@ -22,6 +22,15 @@ include_once('views/nav.php');
 <?php if($unrestricted){ ?>
 <h3>Detailed details: [Visible only to you and admins]</h3>
 <h4>SOQ Response:</h4>
+<?php 
+if($soq = $apl->getSOQResponse()){
+	foreach ($soq as $key => $value) {
+		echo $value;
+	};
+}else{
+	echo "SOQ unavailable";
+}
+?>
 <h4>Questionnaire Response:</h4>
 <?php } ?>
 </main>

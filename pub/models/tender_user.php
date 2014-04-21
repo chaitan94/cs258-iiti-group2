@@ -36,7 +36,23 @@ class TenderUser extends DB{
 			return new Tender($this->tenderid);
 		}else return false;
 	}
-	function insert($a, $b, $soq, $q){
+	public function getSOQResponse(){
+		if(file_exists("data/tender_applications/$this->id/soq_response.json")){
+			$f = fopen("data/tender_applications/$this->id/soq_response.json", "r");
+			$soq = json_decode(fread($f, 1000));
+			fclose($f);
+			return $soq;
+		}else return false;
+	}
+	public function getQuestionnaireResponse(){
+		if(file_exists("data/tender_applications/$this->id/questionnaire_response.json")){
+			$f = fopen("data/tender_applications/$this->id/questionnaire_response.json", "r");
+			$questionnaire = json_decode(fread($f, 1000));
+			fclose($f);
+			return $questionnaire;
+		}else return false;
+	}
+	public function insert($a, $b, $soq, $q){
 		$st = $this->db->prepare("SELECT id FROM tender_user WHERE tenderid=? AND userid=?;");
 		$st->execute(array($a,$b));
 		if(!$st->rowCount()){
