@@ -20,19 +20,45 @@ include_once('views/nav.php');
 	Applicant: <?=$user->name?><br>
 	Tender Title: <?=$tender->title?><br>
 <?php if($unrestricted){ ?>
-<h3>Detailed details: [Visible only to you and admins]</h3>
-<h4>SOQ Response:</h4>
-<?php 
-if($soq = $apl->getSOQResponse()){
-	foreach ($soq as $key => $value) {
-		echo $value;
-	};
-}else{
-	echo "SOQ unavailable";
-}
-?>
-<h4>Questionnaire Response:</h4>
-<?php } ?>
+	<h3>Detailed details: [Visible only to you and admins]</h3>
+	<h4>SOQ Response:</h4>
+	<?php 
+	if($soq = $ten->getSOQ()){
+		if($soqres = $apl->getSOQResponse()){
+			$n = sizeof($soqres);
+			echo '<table class="pure-table"><thead><tr><th>Specification</th><th>Bid</th></tr></thead><tbody>';
+			for($i = 0; $i < $n; $i++) {
+				echo '<tr><td>'.$soq[$i]->specification.'</td><td>'.$soqres[$i].'</td></tr>';
+			};
+			echo '</tbody></table>';
+		}else{
+			echo "SOQ Response unavailable";
+		}
+	}else{
+		echo "SOQ unavailable";
+	}
+	?>
+	<h4>Questionnaire Response:</h4>
+	<?php 
+	if($soq = $ten->getQuestionnaire()){
+		if($soqres = $apl->getQuestionnaireResponse()){
+			$totalmarks = 0;
+			$n = sizeof($soqres);
+			echo '<table class="pure-table"><thead><tr><th>Question</th><th>Answer</th><th>Marks gained</th></tr></thead><tbody>';
+			for($i = 0; $i < $n; $i++) {
+				$optionselected = $soq[$i]->options[$soqres[$i]];
+				echo '<tr><td>'.$soq[$i]->question.'</td><td>'.$optionselected->option.'</td><td>'.$optionselected->marks.'</td></tr>';
+				$totalmarks += $optionselected->marks;
+			};
+			echo '</tbody></table>';
+			echo 'Total marks: '.$totalmarks;
+		}else{
+			echo "Questionnaire Response unavailable";
+		}
+	}else{
+		echo "Questionnaire unavailable";
+	}
+} ?>
 </main>
 </div>
 </body>
