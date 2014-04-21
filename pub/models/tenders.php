@@ -49,6 +49,22 @@ class Tender extends DB{
 		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
 		else return false;
 	}
+	public function getSOQ(){
+		if(file_exists("data/tenders/$this->id/soq.json")){
+			$f = fopen("data/tenders/$this->id/soq.json", "r");
+			$soq = json_decode(fread($f, 1000));
+			fclose($f);
+			return $soq;
+		}else return false;
+	}
+	public function getQuestionnaire(){
+		if(file_exists("data/tenders/$this->id/questionnaire.json")){
+			$f = fopen("data/tenders/$this->id/questionnaire.json", "r");
+			$questionnaire = json_decode(fread($f, 1000));
+			fclose($f);
+			return $questionnaire;
+		}else return false;
+	}
 	public function getSearchResults($terms, $num=10, $offset=0){
 		foreach ($terms as $key => $keyword)
 			$terms[$key] = preg_replace('/[^A-Za-z0-9\-]/', '', $keyword);

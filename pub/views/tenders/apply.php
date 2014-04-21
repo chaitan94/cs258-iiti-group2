@@ -24,10 +24,7 @@ $ten = new Tender($dno);
 			<thead><tr><th>Specification</th><th>Quantity</th><th>EMD</th><th>Bid</th></tr></thead>
 			<tbody>
 			<?php 
-			if(file_exists("data/tenders/$ten->id/soq.json")){
-				$f = fopen("data/tenders/$ten->id/soq.json", "r");
-				$soq = json_decode(fread($f, 1000));
-				fclose($f);
+			if($soq = $ten->getSOQ()){
 				foreach ($soq as $key => $value) {
 					echo "<tr><td>$value->specification</td><td>$value->quantity</td><td>$value->emd</td><td><input type='text' name='soq$key' required></td></tr>";
 				};
@@ -42,10 +39,7 @@ $ten = new Tender($dno);
 			<legend>Questionnaire</legend>
 			<div id="questionnaire">
 			<?php
-			if(file_exists("data/tenders/$ten->id/questionnaire.json")){
-				$f = fopen("data/tenders/$ten->id/questionnaire.json", "r");
-				$questionnaire = json_decode(fread($f, 1000));
-				fclose($f);
+			if($questionnaire = $ten->getQuestionnaire()){
 				foreach ($questionnaire as $key => $value) {
 					echo "<div class='question'><h4>$value->question</h4>";
 					foreach ($value->options as $k => $v) {
