@@ -55,15 +55,15 @@ nav ul li{
 	color:#CCC;
 	display: inline;
 	padding: 7px 15px;
-  -webkit-transition: all 0.3s ease-out;
-     -moz-transition: all 0.3s ease-out;
-       -o-transition: all 0.3s ease-out;
-          transition: all 0.3s ease-out;
 }
 nav ul li:hover{
 	background: #444;
 	color: #DDD;
 	cursor: pointer;
+  -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
 }
 .banner{
 	background: rgba(40,40,60,0.6);
@@ -79,7 +79,7 @@ nav ul li:hover{
 .not-nav{padding-top: 33px;}
 main{
 	background: rgba(255,255,255,0.9);
-	padding: 50px 10%;
+	padding: 20px 10% 50px 10%;
 	min-height: 550px;
 	margin-bottom: 10px;
 }
