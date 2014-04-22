@@ -77,9 +77,12 @@ include_once('views/nav.php');
 	?>
 	<h3>Applicants:</h3>
 	<?php
-	foreach($ten->getApplicants() as $v){
-		echo '<a href="/users/'.$v->userid.'">'.$v->name.'</a><br>';
-	};
+	$applicants = $ten->getApplicants();
+	if(sizeof($applicants)){
+		foreach($applicants as $v){
+			echo '<a href="/users/'.$v->userid.'">'.$v->name.'</a><br>';
+		};
+	}else echo 'None.'; 
 	?>
 </main>
 </div>

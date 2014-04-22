@@ -12,7 +12,7 @@
 	<form id="reg" class="pure-form pure-form-aligned">
 		<legend>Register</legend><br>
 		<fieldset>
-			<div class="pure-control-group"><label>Username</label><input name="name" type="text" required></div>
+			<div class="pure-control-group"><label>Name</label><input name="name" type="text" required></div>
 			<div class="pure-control-group"><label>E-mail</label><input name="email" type="email" required></div>
 			<div class="pure-control-group"><label>Password</label><input name="pass" type="password" required></div>
 			<div class="pure-control-group"><label>Confirm Password</label><input name="confirmpass" type="password" required></div>

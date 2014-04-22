@@ -33,7 +33,7 @@ class Tender extends DB{
 		}
 	}
 	public function getOne($id){
-		$st = $this->executeQuery("SELECT * FROM tenders WHERE id=?;",array($id));
+		$st = $this->executeQuery("SELECT * FROM tenders WHERE id=?;", array($id));
         return($st->fetchObject());
 	}
 	public function getAll(){
@@ -68,14 +68,14 @@ class Tender extends DB{
 	public function getSearchResults($terms, $num=10, $offset=0){
 		foreach ($terms as $key => $keyword)
 			$terms[$key] = preg_replace('/[^A-Za-z0-9\-]/', '', $keyword);
-		$like = implode($terms,"%' OR title LIKE '%");
+		$like = implode($terms, "%' OR title LIKE '%");
 		$r = $this->db->query("SELECT * FROM tenders WHERE title LIKE '%$like%' ORDER BY timestamp DESC");
 		return $r->fetchAll(PDO::FETCH_OBJ);
 	}
-	public function insert($t,$f){
-        $st = $this->executeQuery("INSERT INTO tenders(title,brief,emd,category,closedate,closetime,startdate,starttime,ownerid)
-			VALUES(?,?,?,?,?,?,?,?,?);",
-			array($t['title'],$t['brief'],$t['emd'],$t['category'],$t['closedate'],$t['closetime'],$t['startdate'],$t['starttime'],$_SESSION['id']));
+	public function insert($t, $f){
+        $st = $this->executeQuery("INSERT INTO tenders(title, brief, emd, category, closedate, closetime, startdate, starttime, ownerid)
+			VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",
+			array($t['title'], $t['brief'], $t['emd'], $t['category'], $t['closedate'], $t['closetime'], $t['startdate'], $t['starttime'], $_SESSION['id']));
         if($st) {
             $id = $this->db->lastInsertId();
             mkdir("data/tenders/$id");
@@ -88,22 +88,22 @@ class Tender extends DB{
             fwrite($qjson, $t['questionnairejson']);
             fclose($qjson);
             
-            move_uploaded_file($f['NIT']['tmp_name'],"data/tenders/$id/NIT.pdf");
-            move_uploaded_file($f['tenderdoc']['tmp_name'],"data/tenders/$id/tenderdoc.pdf");
+            move_uploaded_file($f['NIT']['tmp_name'], "data/tenders/$id/NIT.pdf");
+            move_uploaded_file($f['tenderdoc']['tmp_name'], "data/tenders/$id/tenderdoc.pdf");
             return true;
         } else return false;
 	}
 	public function isAppliedBy($uid){
-		$r = $this->executeQuery("SELECT * FROM tender_user WHERE tenderid=? AND userid=?;",array($this->id,$uid));
+		$r = $this->executeQuery("SELECT * FROM tender_user WHERE tenderid=? AND userid=?;", array($this->id, $uid));
 		return $r->rowCount();
 	}
 	public function getApplicants(){
-		$r = $this->executeQuery("SELECT users.name,tu.id,tu.userid FROM tender_user as tu INNER JOIN users WHERE tu.tenderid=? AND tu.userid=users.id;",array($this->id));
+		$r = $this->executeQuery("SELECT users.name, tu.id, tu.userid FROM tender_user as tu INNER JOIN users WHERE tu.tenderid=? AND tu.userid=users.id;", array($this->id));
 		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
 		else return false;
 	}
 	public function getTendersByOwner($owner){
-		$r=$this->executeQuery("SELECT * FROM tenders WHERE ownerid = ? AND open = 'true';",array($owner));
+		$r=$this->executeQuery("SELECT * FROM tenders WHERE ownerid = ? AND open = 'true';", array($owner));
 		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
 		else return false;
 	}
