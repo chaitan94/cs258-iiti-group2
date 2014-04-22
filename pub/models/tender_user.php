@@ -7,6 +7,7 @@ class TenderUser extends DB{
 	public $id;
 	public $tenderid;
 	public $userid;
+	public $score;
 	function __construct($id=0){
 		parent::__construct();
 		if($id){
@@ -14,6 +15,7 @@ class TenderUser extends DB{
 			$r = $this->getOne($id);
 			$this->userid = $r->userid;
 			$this->tenderid = $r->tenderid;
+			$this->score = $r->score;
 		}
 	}
 	public function getOne($id){
@@ -52,6 +54,24 @@ class TenderUser extends DB{
 			return $questionnaire;
 		}else return false;
 	}
+	private function calculateScore(){
+		include_once('models/tenders.php');
+		$ten = new Tender($this->tenderid);
+		if($soq = $ten->getQuestionnaire()){
+			if($soqres = $this->getQuestionnaireResponse()){
+				$totalmarks = 0;
+				$n = sizeof($soqres);
+				for($i = 0; $i < $n; $i++) {
+					$optionselected = $soq[$i]->options[$soqres[$i]];
+					$totalmarks += $optionselected->marks;
+				};
+				$st = $this->db->prepare("UPDATE tender_user SET score=? WHERE userid=?;");
+				$st->execute(array($totalmarks, $this->id));
+				$this->score = $totalmarks;
+				return $totalmarks;
+			}else return false;
+		}else return false;
+	}
 	public function insert($a, $b, $soq, $q){
 		$st = $this->db->prepare("SELECT id FROM tender_user WHERE tenderid=? AND userid=?;");
 		$st->execute(array($a,$b));
@@ -70,6 +90,7 @@ class TenderUser extends DB{
 	        $qjson = fopen("data/tender_applications/$this->id/questionnaire_response.json", "w");
 	        fwrite($qjson, $q);
 	        fclose($qjson);
+	        $this->calculateScore();
 		}
 	}
 }

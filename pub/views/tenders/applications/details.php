@@ -42,16 +42,14 @@ include_once('views/nav.php');
 	<?php 
 	if($soq = $ten->getQuestionnaire()){
 		if($soqres = $apl->getQuestionnaireResponse()){
-			$totalmarks = 0;
 			$n = sizeof($soqres);
 			echo '<table class="pure-table"><thead><tr><th>Question</th><th>Answer</th><th>Marks gained</th></tr></thead><tbody>';
 			for($i = 0; $i < $n; $i++) {
 				$optionselected = $soq[$i]->options[$soqres[$i]];
 				echo '<tr><td>'.$soq[$i]->question.'</td><td>'.$optionselected->option.'</td><td>'.$optionselected->marks.'</td></tr>';
-				$totalmarks += $optionselected->marks;
 			};
 			echo '</tbody></table>';
-			echo 'Total marks: '.$totalmarks;
+			echo 'Total marks: '.$apl->score;
 		}else{
 			echo "Questionnaire Response unavailable";
 		}

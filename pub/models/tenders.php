@@ -98,7 +98,7 @@ class Tender extends DB{
 		return $r->rowCount();
 	}
 	public function getApplicants(){
-		$r = $this->executeQuery("SELECT users.name, tu.id, tu.userid FROM tender_user as tu INNER JOIN users WHERE tu.tenderid=? AND tu.userid=users.id;", array($this->id));
+		$r = $this->executeQuery("SELECT users.name, tu.id, tu.userid, tu.score FROM tender_user as tu INNER JOIN users WHERE tu.tenderid=? AND tu.userid=users.id ORDER BY tu.score DESC;", array($this->id));
 		if($r) return $r->fetchAll(PDO::FETCH_OBJ);
 		else return false;
 	}

@@ -17,9 +17,6 @@
 .hide:target  ~ .list {
 	display: inline;
 }
-.link {
-	color: #321212;
-}
 @media print {
 	.hide,.show {
 		display: none;
