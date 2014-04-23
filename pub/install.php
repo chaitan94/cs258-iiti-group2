@@ -99,12 +99,17 @@ CREATE DATABASE IF NOT EXISTS `$dbname`;";
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tenderid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );";
   initTable($db,$dbname,$sqltenderuser,"tender_user");
   $db = null;
 }
+
+if(!file_exists('data')) mkdir('data');
+if(!file_exists('data/tenders')) mkdir('data/tenders');
+if(!file_exists('data/tender_applications')) mkdir('data/tender_applications');
 ?>
 <br><a href="/">Click here to go to home page</a>
 </body>
