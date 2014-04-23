@@ -7,6 +7,28 @@ include 'models/tenders.php'; $i=0;?>
 <link rel="stylesheet" type="text/css" href="/css/pure.min.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" type="text/css" href="/css/tender-approve.css">
+<script type="text/javascript">
+
+function func(no,id)
+{
+	if(no==0)
+		{
+		document.getElementById('show'+id).style.display='inline'; 
+		document.getElementById('hide'+id).style.display='none';
+		document.getElementById('list'+id).style.display='inline';
+		}
+	else
+		{
+		document.getElementById('hide'+id).style.display='inline';
+		document.getElementById('show'+id).style.display='none';
+		document.getElementById('list'+id).style.display='none';
+		}
+		
+}
+
+
+</script>
+
 </head>
 <body>
 <div class="not-nav">
@@ -29,9 +51,10 @@ foreach ($r as $key => $value){
 			$no_applicants = sizeof($tender_applicants);
 			if($no_applicants){
 		?>	<br>
-			<a href="#hide<?=$i?>" class="hide" id="hide<?=$i?>"><button class="pure-button pure-button-primary">View <?=$no_applicants?> Applications</button></a>
-			<a href="#show<?=$i?>" class="show" id="show<?=$i?>"><button class="pure-button pure-button-primary">Hide <?=$no_applicants?> Applications</button></a>
-			<div class="list">
+			<a  class="hide" id="hide<?=$i?>"  onclick="func(0,<?=$i?>);"><button class="pure-button pure-button-primary">View <?=$no_applicants?> Applications</button></a>
+			<a class="show" id="show<?=$i?>"  onclick="func(1,<?=$i?>);"><button class="pure-button pure-button-primary">Hide <?=$no_applicants?> Applications</button></a>
+			<div id="list<?=$i?>" hidden="true">
+
 				<table class="pure-table">
 					<thead><tr><th>User</th><th>Marks gained</th><th></th></tr></thead>
 					<tbody>
