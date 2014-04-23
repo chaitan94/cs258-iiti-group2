@@ -52,45 +52,25 @@ nav ul{
 	list-style-type: none;
 }
 nav ul li{
-	color:#CCC;
+	color:#DDD;
 	display: inline;
-	padding: 7px 15px;
+	padding: 10px 15px;
 }
 nav ul li:hover{
 	background: #444;
-	color: #DDD;
+	color: #FFF;
 	cursor: pointer;
   -webkit-transition: all 0.3s ease-out;
      -moz-transition: all 0.3s ease-out;
        -o-transition: all 0.3s ease-out;
           transition: all 0.3s ease-out;
 }
-.banner{
-	background: rgba(40,40,60,0.6);
-	color: #FFF;
-	text-shadow: rgba(100,100,100,0.5) 1px 1px;
-	text-align: center;
-}
-.banner h1{
-	font-weight: normal;
-	padding: 350px 0 20px 0;
-	margin: 0;
-}
-.not-nav{padding-top: 33px;}
+.not-nav{padding-top: 38px;}
 main{
 	background: rgba(255,255,255,0.9);
 	padding: 20px 10% 50px 10%;
 	min-height: 550px;
 	margin-bottom: 10px;
-}
-.subtitle{
-	background: rgba(0,0,0,0.05);
-	padding: 4px 0;
-	border: solid rgba(0,0,0,0.2) 1px;
-	border-left: 0;
-	border-right: 0;
-	border-radius: 10%;
-	text-align: center;
 }
 footer{
 	height: 670px;

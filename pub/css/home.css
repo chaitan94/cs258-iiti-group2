@@ -1,0 +1,54 @@
+@font-face{
+	font-family: Montserrat;
+	src: url(../fonts/Montserrat-Regular.ttf);
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face{
+	font-family: Montserrat;
+	src: url(../fonts/Montserrat-Bold.ttf);
+	font-style: normal;
+	font-weight: bold;
+}
+.banner{
+	font-family: Montserrat;
+	background: rgba(40,40,60,0.6);
+	color: #FFF;
+	padding: 50px 0;
+	text-shadow: rgba(100,100,100,0.5) 1px 1px;
+	text-align: center;
+}
+.banner h1{
+	font-weight: normal;
+	padding: 250px 0 0px 0;
+	margin: 0;
+}
+.banner p{
+	margin: 0;
+}
+.homebox{
+	margin: 10px;
+	padding: 30px;
+	background: rgba(245,245,245,0.8);
+	border: rgba(0,0,0,0.1) 1px solid;
+	box-shadow: rgba(0,0,0,0.1) 0 0 15px 0;
+	border-radius: 10px;
+}
+.homeupdates{
+	margin: 10px;
+	border: 1px #CCC solid;
+}
+.homeupdates .subtitle{
+	background: rgba(20,70,190,0.1);
+	padding: 10px 0;
+	text-align: center;
+}
+.updates-items{
+	
+}
+.updates-item{
+	padding: 15px 5px;
+}
+.updates-item:hover{
+	background: #FFF;
+}
