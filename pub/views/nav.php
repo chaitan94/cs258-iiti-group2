@@ -15,7 +15,7 @@ if(isset($_SESSION['id'])){
 		<a href="/admin"><li style="float:right;">Admin Panel</li></a>
 <?php }
 }else{ ?>
-		<a href="/login"><li style="float:right;">Login</li></a>
+		<a href="/login?redirect_uri=<?=urlencode($_SERVER['REQUEST_URI'])?>"><li style="float:right;">Login</li></a>
 		<a href="/register"><li style="float:right;">Register</li></a>
 <?php } ?>
 	</ul>

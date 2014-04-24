@@ -28,7 +28,9 @@ $("#login").submit(function(e){
 		data:$(this).serializeArray(),
 		success:function(d){
 			if(d){
-				if(d=='1') window.open('/','_self');
+				var $_GET=[];
+				window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+				if(d=='1') window.open(decodeURIComponent($_GET['redirect_uri']),'_self');
 				else if(d=='0') alert('Username/Password wrong');
 				else if(d=='-1') alert('E-mail not registered');
 			}
