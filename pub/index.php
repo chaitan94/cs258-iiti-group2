@@ -23,7 +23,9 @@ case '/':
 	break;
 case 'logout':
 	session_destroy();
-	header('Location: /');
+	if(isset($_GET['redirect_uri']))
+		header('Location: '.urldecode($_GET['redirect_uri']));
+	else header('Location: /');
 	break;
 case 'login':
 	include_once('controllers/login.php');

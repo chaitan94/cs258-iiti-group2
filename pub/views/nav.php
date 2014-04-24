@@ -9,7 +9,7 @@ if(isset($_SESSION['id'])){
 	include_once('models/users.php');
 	$user = new User($_SESSION['id']);
 ?>
-		<a href="/logout"><li style="float:right;">Logout</li></a>
+		<a href="/logout?redirect_uri=<?=urlencode($_SERVER['REQUEST_URI'])?>"><li style="float:right;">Logout</li></a>
 		<a href="/user/<?=$_SESSION['id']?>"><li style="float:right;"><?=$user->name?></li></a>
 	<?php if($user->type=='admin'){ ?>
 		<a href="/admin"><li style="float:right;">Admin Panel</li></a>

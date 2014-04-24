@@ -30,8 +30,10 @@ $("#login").submit(function(e){
 			if(d){
 				var $_GET=[];
 				window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
-				if(d=='1') window.open(decodeURIComponent($_GET['redirect_uri']),'_self');
-				else if(d=='0') alert('Username/Password wrong');
+				if(d=='1') {
+					if($_GET['redirect_uri'] == undefined) window.open('/', '_self');
+					else window.open(decodeURIComponent($_GET['redirect_uri']), '_self');
+				} else if(d=='0') alert('Username/Password wrong');
 				else if(d=='-1') alert('E-mail not registered');
 			}
 		}
