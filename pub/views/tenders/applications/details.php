@@ -4,7 +4,7 @@
 <?php
 include_once('views/nav.php');
 ?>
-	<title>Details | Tender #<?=$dno?></title>
+	<title>Details | Tender #<?=$apl->id?></title>
 	<link rel="stylesheet" type="text/css" href="/css/pure.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/css/tender.css">

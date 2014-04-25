@@ -54,7 +54,7 @@ class TenderUser extends DB{
 			return $questionnaire;
 		}else return false;
 	}
-	private function calculateScore(){
+	public function calculateScore(){
 		include_once('models/tenders.php');
 		$ten = new Tender($this->tenderid);
 		if($soq = $ten->getQuestionnaire()){
@@ -65,8 +65,6 @@ class TenderUser extends DB{
 					$optionselected = $soq[$i]->options[$soqres[$i]];
 					$totalmarks += $optionselected->marks;
 				};
-				$st = $this->db->prepare("UPDATE tender_user SET score=? WHERE userid=?;");
-				$st->execute(array($totalmarks, $this->id));
 				$this->score = $totalmarks;
 				return $totalmarks;
 			}else return false;
@@ -90,7 +88,9 @@ class TenderUser extends DB{
 	        $qjson = fopen("data/tender_applications/$this->id/questionnaire_response.json", "w");
 	        fwrite($qjson, $q);
 	        fclose($qjson);
-	        $this->calculateScore();
+	        $score = $this->calculateScore();
+			$st = $this->db->prepare("UPDATE tender_user SET score=? WHERE id=?;");
+			$st->execute(array($score, $this->id));
 		}
 	}
 }

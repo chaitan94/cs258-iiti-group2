@@ -51,10 +51,10 @@
          <ul class="art-vmenu">
         	
         	<li >
-        	<a href="http://facebook.com"><span class="l"></span><span class="r"></span><span class="t">Home Page</span></a>
+        	<a href="/"><span class="l"></span><span class="r"></span><span class="t">Home Page</span></a>
         	</li>	
             <li>
-            <a href="http://facebook.com"><span class="l"></span><span class="r"></span><span class="t">New Tenders</span></a>
+            <a href="/tenders"><span class="l"></span><span class="r"></span><span class="t">New Tenders</span></a>
             </li>
         </ul>
          <div class="cleared"></div>

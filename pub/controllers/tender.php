@@ -73,7 +73,7 @@ if(isset($urlpar[1])){
 				if(is_numeric($urlpar[2])){
 					$apl = new TenderUser($urlpar[2]);
 					$ten = new Tender($apl->tenderid);
-					if($apl->id){
+					if($apl->id && isset($_SESSION['id'])){
 						$unrestricted = ($apl->userid == $_SESSION['id'] || $ten->ownerid == $_SESSION['id']);
 						include_once('views/tenders/applications/details.php');
 					}else header('Location: /');
@@ -94,7 +94,7 @@ if(isset($urlpar[1])){
 		$r = $ten->getSearchResults($terms);
 	} else {
 		$page = 1;
-		$countperpage = 10;
+		$countperpage = 5;
 		$count = $ten->getCount();
 		if(isset($_GET['p'])){ $page = $_GET['p']; }
 		if($page < 1) $page = 1;
